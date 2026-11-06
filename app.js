@@ -392,7 +392,7 @@
     var checkCard =
       '<div class="card check"><div class="label"><span class="tag">Check</span> ' + ui("label_check") + "</div>" +
       '<div class="sub">' + ui("sub_check") + "</div>" +
-      '<details><summary style="cursor:pointer;font-weight:700;color:#3E6E78;padding:6px 0;">' + ui("show_report") + "</summary>" +
+      '<details><summary style="cursor:pointer;font-weight:700;color:#1D3A8F;padding:6px 0;">' + ui("show_report") + "</summary>" +
       stepsOL(route.check) + "</details></div>";
 
     var why =
@@ -407,7 +407,7 @@
 
     document.getElementById("results").innerHTML =
       headBlock(route) +
-      '<div class="reassure-line" style="background:#EDF2FC;border-color:rgba(78,124,134,.4)">' + ui("hardpart") + "</div>" +
+      '<div class="reassure-line" style="background:#EDF2FC;border-color:rgba(67,114,214,.4)">' + ui("hardpart") + "</div>" +
       recap + tellCard + checkCard + supportBar() + why;
   }
 
