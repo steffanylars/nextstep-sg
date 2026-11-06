@@ -36,7 +36,9 @@ conversation_config = {
         "prompt": {"prompt": SYSTEM_PROMPT},
         "first_message": FIRST,
         "language": "en",
-    }
+    },
+    # Wait for the user to finish; don't cut in.
+    "turn": {"turn_eagerness": "patient", "turn_timeout": 12},
 }
 
 try:
