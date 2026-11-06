@@ -116,7 +116,10 @@
       <p class="lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.</p>
       <div class="reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
       <button class="btn primary" onclick="NextStep.start()">Start — it takes 1 minute</button>
-      <div id="voice-slot"><!-- ElevenLabs "Talk instead of tapping" widget mounts here (deliverable 4) --></div>
+      <div id="voice-slot">
+        <div id="voice-label" style="display:none;text-align:center;font-size:14px;font-weight:700;color:#1B7A7E;margin:4px 0 2px;">🎙️ Prefer to talk? Tap the mic to speak instead of tapping.</div>
+        <div id="voice-hint" style="display:none;text-align:center;font-size:12.5px;color:rgba(20,52,47,.55);margin-top:6px;">Voice coming online — add your ElevenLabs agent id in <code style="font-family:ui-monospace,Menlo,monospace">config.js</code> to enable “Talk instead of tapping”.</div>
+      </div>
     </div>
     <div class="footer-links">
       <a href="rules.html">See all routes</a>
@@ -153,6 +156,26 @@
   </section>
 
 </div>
+<script src="config.js"></script>
+<script>
+  /* Mount the ElevenLabs Conversational AI widget only if an agent id is set.
+     The widget just converses and reads back the SAME routes.json table —
+     it never decides the route. See AGENT_PROMPT.md for the system prompt. */
+  (function () {
+    var cfg = window.NEXTSTEP_CONFIG || {};
+    var id = (cfg.ELEVENLABS_AGENT_ID || "").trim();
+    var slot = document.getElementById("voice-slot");
+    if (!id) { document.getElementById("voice-hint").style.display = "block"; return; }
+    document.getElementById("voice-label").style.display = "block";
+    var w = document.createElement("elevenlabs-convai");
+    w.setAttribute("agent-id", id);
+    slot.appendChild(w);
+    var s = document.createElement("script");
+    s.src = "https://unpkg.com/@elevenlabs/convai-widget-embed";
+    s.async = true; s.type = "text/javascript";
+    document.body.appendChild(s);
+  })();
+</script>
 <script src="app.js"></script>
 </body>
 </html>
