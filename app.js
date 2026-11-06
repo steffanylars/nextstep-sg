@@ -379,7 +379,7 @@
       "</ul></div>";
 
     var trustedBtn = route.showTrustedAdult
-      ? '<button class="btn primary" style="margin-top:4px" onclick="NextStep.tellAdult()">' + ui("tell_btn") + "</button>"
+      ? '<button class="btn primary" style="margin-top:4px" onclick="NextStep.tellAdult()"><svg class="ic" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> ' + ui("tell_btn") + "</button>"
       : "";
 
     var tellCard =
@@ -392,7 +392,7 @@
     var checkCard =
       '<div class="card check"><div class="label"><span class="tag">Check</span> ' + ui("label_check") + "</div>" +
       '<div class="sub">' + ui("sub_check") + "</div>" +
-      '<details><summary style="cursor:pointer;font-weight:700;color:#1D3A8F;padding:6px 0;">' + ui("show_report") + "</summary>" +
+      '<details><summary style="cursor:pointer;font-weight:700;color:#3E6E78;padding:6px 0;">' + ui("show_report") + "</summary>" +
       stepsOL(route.check) + "</details></div>";
 
     var why =
@@ -407,7 +407,7 @@
 
     document.getElementById("results").innerHTML =
       headBlock(route) +
-      '<div class="reassure-line" style="background:#EDF2FC;border-color:rgba(67,114,214,.4)">' + ui("hardpart") + "</div>" +
+      '<div class="reassure-line" style="background:#EDF2FC;border-color:rgba(78,124,134,.4)">' + ui("hardpart") + "</div>" +
       recap + tellCard + checkCard + supportBar() + why;
   }
 
