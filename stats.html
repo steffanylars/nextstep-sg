@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NextStep SG — Scam Drill results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{--sand-0:#FFFFFF;--sand-2:#E9EEF9;--sand-card:#EEF2FB;--ink:#1F2433;--teal-ink:#16246A;--teal:#1D3A8F;--amber:#4372D6;--terra:#C8151B;--line:rgba(31,36,51,.18);--shadow:0 16px 40px rgba(21,36,74,.08);}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sand-0),var(--sand-2));min-height:100vh;}
+  .wrap{max-width:620px;margin:0 auto;padding:30px 20px 60px;}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--teal-ink);display:flex;align-items:center;gap:9px;text-decoration:none;}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--amber);}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-size:30px;color:var(--teal-ink);margin:18px 0 4px;letter-spacing:-.5px;}
+  .lede{font-size:14.5px;color:rgba(31,36,51,.7);margin:0 0 24px;}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 16px;text-align:center;box-shadow:var(--shadow);}
+  .kpi .big{font-family:'Fraunces',serif;font-weight:700;font-size:54px;line-height:1;color:var(--teal-ink);}
+  .kpi .big.up{color:#0A7D5A;}
+  .kpi .lab{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:rgba(31,36,51,.6);margin-top:10px;line-height:1.3;}
+  .delta{text-align:center;font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:#0A7D5A;margin:2px 0 22px;}
+  .meta{text-align:center;font-size:13px;color:rgba(31,36,51,.6);}
+  .empty{text-align:center;font-size:15px;color:rgba(31,36,51,.6);background:#fff;border:1px dashed var(--line);border-radius:16px;padding:30px 20px;}
+  .reset{display:block;margin:26px auto 0;background:none;border:none;color:var(--terra);font-weight:700;font-size:13px;cursor:pointer;}
+  .links{margin-top:20px;display:flex;gap:16px;justify-content:center;font-size:13px;}
+  .links a{color:var(--teal);font-weight:700;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
+  <h1>Scam Drill — live results</h1>
+  <p class="lede">What changes between people's 1st and 2nd attempt at the drill.</p>
+  <div id="dash"></div>
+  <div class="links">
+    <a href="test.html">Run the drill</a><a href="index.html">Back to NextStep</a>
+  </div>
+  <button class="reset" onclick="if(confirm('Clear all drill results?')){localStorage.removeItem('nextstep_drill');render();}">Reset results</button>
+</div>
+<script>
+function pct(a){if(!a||!a.length)return 0;return Math.round(100*a.reduce(function(x,y){return x+y;},0)/a.length);}
+function med(a){if(!a||!a.length)return null;var b=a.slice().sort(function(x,y){return x-y;});var m=Math.floor(b.length/2);return b.length%2?b[m]:Math.round((b[m-1]+b[m])*5)/10;}
+function render(){
+  var s={}; try{s=JSON.parse(localStorage.getItem("nextstep_drill")||"{}");}catch(e){}
+  var n=(s.a1_first||[]).length;
+  var el=document.getElementById("dash");
+  if(!n){ el.innerHTML='<div class="empty">No drills yet. Open the Scam Drill, play it twice, and the numbers appear here — live.</div>'; return; }
+  var b=pct(s.a1_first), a=pct(s.a2_first), d=a-b;
+  var t1=med(s.a1_time), t2=med(s.a2_time);
+  el.innerHTML=
+    '<div class="pair">'+
+      '<div class="kpi"><div class="big">'+b+'%</div><div class="lab">Got the 1st step right · attempt 1</div></div>'+
+      '<div class="kpi"><div class="big up">'+a+'%</div><div class="lab">Got it right · attempt 2</div></div>'+
+    '</div>'+
+    '<div class="delta">'+(d>=0?"▲ +":"▼ ")+d+' points after one practice</div>'+
+    '<div class="pair">'+
+      '<div class="kpi"><div class="big">'+(t1===null?"–":t1+'s')+'</div><div class="lab">Median time · attempt 1</div></div>'+
+      '<div class="kpi"><div class="big up">'+(t2===null?"–":t2+'s')+'</div><div class="lab">Median time · attempt 2</div></div>'+
+    '</div>'+
+    '<p class="meta">'+n+' people practised · '+((s.a2_first||[]).length)+' did a 2nd attempt</p>';
+}
+render();
+</script>
+</body>
+</html>

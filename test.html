@@ -3,198 +3,216 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title>NextStep SG — live test</title>
+<title>NextStep SG — Scam Drill</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{--sand-0:#FFFFFF;--sand-2:#E9EEF9;--sand-card:#EEF2FB;--ink:#1F2433;--teal-ink:#16246A;--teal:#1D3A8F;--amber:#4372D6;--terra:#C8151B;--line:rgba(31,36,51,.18);--shadow:0 16px 40px rgba(21,36,74,.08);}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sand-0),var(--sand-2));background-attachment:fixed;min-height:100vh;}
-  .wrap{max-width:540px;margin:0 auto;padding:24px 18px 48px;}
+  .wrap{max-width:540px;margin:0 auto;padding:22px 18px 48px;}
   .brand{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--teal-ink);display:flex;align-items:center;gap:9px;text-decoration:none;}
   .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--amber);}
-  h1{font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:var(--teal-ink);margin:16px 0 4px;letter-spacing:-.5px;}
-  .lede{font-size:15px;line-height:1.5;color:rgba(31,36,51,.8);margin:0 0 20px;}
-  .stage{display:none;animation:fade .3s ease;}
-  .stage.active{display:block;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;color:var(--teal-ink);margin:14px 0 2px;letter-spacing:-.5px;}
+  .lede{font-size:14.5px;line-height:1.5;color:rgba(31,36,51,.8);margin:0 0 18px;}
+  .stage{display:none;animation:fade .3s ease;} .stage.active{display:block;}
   @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px;}
-  .q{font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1.25;color:var(--teal-ink);margin:0 0 16px;}
-  .opt{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:15px;font-family:'Plus Jakarta Sans';font-weight:600;font-size:15.5px;line-height:1.35;color:var(--teal-ink);margin-bottom:11px;transition:transform .12s,border-color .15s,background .15s;}
-  .opt:active{transform:scale(.99);}
-  .opt:hover{border-color:var(--teal);}
-  .opt.sel{border-color:var(--amber);background:#EDF2FC;}
-  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;cursor:pointer;font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;padding:16px;border-radius:13px;background:var(--amber);color:#fff;box-shadow:0 12px 30px rgba(67,114,214,.34);}
+  .pill{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--terra);border-radius:999px;padding:3px 10px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px;}
+  .scen{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px;box-shadow:0 6px 18px rgba(21,36,74,.05);transition:transform .12s,border-color .15s;}
+  .scen:active{transform:scale(.99);} .scen:hover{border-color:var(--teal);}
+  .scen .st{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--terra);}
+  .scen .sd{font-weight:600;font-size:15px;color:var(--teal-ink);margin-top:3px;line-height:1.35;}
+  /* chat */
+  .chat{background:#EAF0FB;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px;}
+  .chat .who{font-size:12px;font-weight:800;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+  .chat .who::before{content:"●";color:#1B9C6B;font-size:10px;}
+  .bubble{background:#fff;border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:14.5px;line-height:1.45;color:var(--ink);max-width:92%;}
+  .prompt{font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--teal-ink);margin:4px 0 4px;}
+  .hint{font-size:13px;color:rgba(31,36,51,.65);margin:0 0 14px;}
+  .pool{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;}
+  .optb{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-weight:600;font-size:14.5px;color:var(--teal-ink);transition:transform .1s,opacity .15s;}
+  .optb:active{transform:scale(.99);} .optb:disabled{opacity:.35;cursor:default;}
+  .optb .pick{margin-left:auto;color:var(--teal);font-weight:800;}
+  .order{background:var(--sand-card);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px;min-height:48px;}
+  .order .oh{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--teal);margin-bottom:8px;}
+  .order ol{margin:0;padding-left:20px;} .order li{font-size:14px;line-height:1.5;margin-bottom:4px;cursor:pointer;}
+  .order .empty{font-size:13px;color:rgba(31,36,51,.5);}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;cursor:pointer;font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;padding:15px;border-radius:12px;background:var(--amber);color:#fff;box-shadow:0 12px 30px rgba(67,114,214,.34);}
   .btn:disabled{background:rgba(31,36,51,.12);color:rgba(31,36,51,.4);box-shadow:none;cursor:not-allowed;}
-  .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);box-shadow:none;}
-  /* mini flow */
-  .stepper{display:flex;gap:6px;margin-bottom:16px;}
-  .pip{width:24px;height:5px;border-radius:999px;background:rgba(31,36,51,.16);}
-  .pip.done{background:var(--teal);} .pip.cur{background:var(--amber);}
-  .route-peek{background:var(--sand-card);border:1px solid var(--line);border-radius:13px;padding:14px;font-size:14px;line-height:1.5;margin-top:4px;}
-  .route-peek b{color:#8A1114;}
-  /* dashboard */
-  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 6px;}
-  .kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 14px;text-align:center;box-shadow:var(--shadow);}
-  .kpi .big{font-family:'Fraunces',serif;font-weight:700;font-size:40px;line-height:1;color:var(--teal-ink);}
-  .kpi .big.up{color:var(--teal);}
-  .kpi .lab{font-size:12.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:rgba(31,36,51,.6);margin-top:8px;}
-  .delta{text-align:center;font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--teal);margin:4px 0 14px;}
-  .meta{text-align:center;font-size:13px;color:rgba(31,36,51,.6);margin-top:6px;}
-  .reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--terra);font-weight:700;font-size:13px;cursor:pointer;}
-  .back{display:inline-block;margin-top:24px;color:var(--teal);font-weight:700;text-decoration:none;font-size:14px;}
-  .pill{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--teal);border-radius:999px;padding:3px 10px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px;}
+  .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);box-shadow:none;margin-top:10px;}
+  .verdict{text-align:center;margin-bottom:14px;}
+  .verdict .big{font-family:'Fraunces',serif;font-weight:700;font-size:40px;line-height:1;}
+  .verdict .big.ok{color:#0A7D5A;} .verdict .big.no{color:var(--terra);}
+  .verdict .sub{font-size:14px;color:rgba(31,36,51,.7);margin-top:6px;}
+  .chips{display:flex;justify-content:center;gap:8px;margin:10px 0 4px;flex-wrap:wrap;}
+  .chip{font-size:12px;font-weight:700;border-radius:999px;padding:4px 11px;}
+  .chip.g{background:#E6F5EE;color:#0A7D5A;} .chip.b{background:#FBEAEA;color:#8A1114;}
+  .rightorder{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+  .rightorder .rh{font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.3px;color:var(--teal);margin-bottom:10px;}
+  .rightorder ol{margin:0;padding-left:20px;} .rightorder li{font-size:14px;line-height:1.5;margin-bottom:9px;}
+  .rightorder li b{color:var(--teal-ink);}
+  .wrongs{font-size:13px;color:#8A1114;background:#FBEAEA;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.5;}
+  .links{margin-top:20px;display:flex;gap:16px;justify-content:center;font-size:13px;flex-wrap:wrap;}
+  .links a{color:var(--teal);font-weight:700;text-decoration:none;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
-  <h1>Live test</h1>
-  <p class="lede">Measure the change: ask one question, run the real flow, ask again. Everyone's answers are tallied below — screenshot-ready for the pitch.</p>
+  <div class="topbar">
+    <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
+    <a class="brand" href="stats.html" style="font-size:13px;color:var(--teal);">Results →</a>
+  </div>
+  <h1>Scam Drill</h1>
+  <p class="lede">Practice in 60 seconds. Pick a real scam, then put the recovery steps in the best order. Try twice and beat your time.</p>
 
-  <!-- STAGE 1: BEFORE -->
-  <section id="stage-before" class="stage active">
-    <div class="card">
-      <span class="pill">Before</span>
-      <p class="q">If an intimate photo of you leaked tonight, what's your very first step?</p>
-      <div id="beforeOpts"></div>
-    </div>
-    <button class="btn" id="beforeNext" disabled onclick="Test.toFlow()">Continue</button>
+  <!-- STAGE 1: pick -->
+  <section id="s-pick" class="stage active">
+    <span class="pill">Choose a scenario</span>
+    <div id="scenList"></div>
   </section>
 
-  <!-- STAGE 2: THE FLOW -->
-  <section id="stage-flow" class="stage">
-    <div class="card">
-      <span class="pill">Now try NextStep</span>
-      <div class="stepper" id="stepper"></div>
-      <p class="q" id="flowTitle"></p>
-      <div id="flowOpts"></div>
-      <div id="flowDone" style="display:none">
-        <div class="route-peek" id="routePeek"></div>
-        <button class="btn" style="margin-top:14px" onclick="Test.toAfter()">That's my plan → continue</button>
-      </div>
+  <!-- STAGE 2: drill -->
+  <section id="s-drill" class="stage">
+    <div class="chat">
+      <div class="who" id="chatWho"></div>
+      <div class="bubble" id="chatMsg"></div>
     </div>
+    <p class="prompt">You already paid or shared your details. What do you do — and in what order?</p>
+    <p class="hint">Tap the actions in the best order. Tap one in your list to remove it.</p>
+    <div class="order"><div class="oh">Your order</div><div id="orderBox"></div></div>
+    <div class="pool" id="pool"></div>
+    <button class="btn" id="doneBtn" disabled onclick="Drill.submit()">Done — see result</button>
   </section>
 
-  <!-- STAGE 3: AFTER -->
-  <section id="stage-after" class="stage">
-    <div class="card">
-      <span class="pill">After</span>
-      <p class="q">Same question: if an intimate photo of you leaked tonight, what's your very first step?</p>
-      <div id="afterOpts"></div>
+  <!-- STAGE 3: result -->
+  <section id="s-res" class="stage">
+    <div class="verdict">
+      <div class="big" id="vBig">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
     </div>
-    <button class="btn" id="afterNext" disabled onclick="Test.toResults()">See the results</button>
-  </section>
-
-  <!-- STAGE 4: DASHBOARD -->
-  <section id="stage-dash" class="stage">
-    <span class="pill">Impact so far</span>
-    <div class="kpis">
-      <div class="kpi"><div class="big" id="kBefore">–</div><div class="lab">Knew the right 1st step (before)</div></div>
-      <div class="kpi"><div class="big up" id="kAfter">–</div><div class="lab">Knew it (after NextStep)</div></div>
+    <div class="rightorder">
+      <div class="rh">The right order</div>
+      <ol id="rightOrder"></ol>
     </div>
-    <div class="delta" id="kDelta"></div>
-    <div class="kpi"><div class="big" id="kSecs">–</div><div class="lab">Median seconds to first plan</div></div>
-    <div class="meta" id="kN"></div>
-    <button class="reset" onclick="Test.reset()">Reset all test data</button>
-    <a class="back" href="index.html">← Back to NextStep</a>
+    <div class="wrongs" id="wrongs"></div>
+    <button class="btn" onclick="location.href='index.html?start=scam'">If this happens for real → open NextStep</button>
+    <button class="btn ghost" id="againBtn" onclick="Drill.again()">Try again — beat your time</button>
+    <div class="links">
+      <a href="stats.html">See everyone's results</a>
+      <a href="index.html">Back to NextStep</a>
+    </div>
   </section>
 </div>
 
 <script>
-var Test = (function(){
+var Drill = (function(){
   "use strict";
-  // The learning goal: PRESERVE EVIDENCE FIRST (screenshot), never delete.
-  var BEFORE_Q = [
-    {v:"delete",    label:"Delete everything so no one can see it"},
-    {v:"screenshot",label:"Screenshot it as evidence before anything else", correct:true},
-    {v:"reply",     label:"Reply and tell them to stop"},
-    {v:"nothing",   label:"Do nothing and hope it goes away"}
+  var SCEN = {
+    a:{who:"WhatsApp · a friend", tag:"Hijacked WhatsApp", msg:"Hey! So paiseh 😅 my bank app is down and I need to pay someone urgently. Can you PayNow me $200 first? I'll return you tonight, promise 🙏"},
+    b:{who:"Carousell · buyer", tag:"Fake buyer link", msg:"Hi! I want to buy your item 😊 I'll pay now — just confirm and receive the payment through this link: carousell-pay-verify.xyz/receive"},
+    c:{who:'Facebook ad · "SPF Recovery"', tag:"Fake “recovery”", msg:"Lost money to a scam? Our officers can help you RECOVER your funds today. Tap to start your claim — limited slots left."}
+  };
+  var OPTIONS = [
+    {id:"police", label:"Lodge a police report"},
+    {id:"pay", label:"Pay the “recovery service”", wrong:true},
+    {id:"bank", label:"Call your bank to block transactions"},
+    {id:"del", label:"Delete the chat", wrong:true},
+    {id:"warn", label:"Warn your friend / the real person"},
+    {id:"scamshield", label:"Call ScamShield 1799"}
   ];
-  var RULES=null, flowStep=0, flowAns={}, flowStart=null, beforePick=null, afterPick=null;
+  var CORRECT = ["bank","police","scamshield","warn"];
+  var LABEL = {}; OPTIONS.forEach(function(o){LABEL[o.id]=o.label;});
+  var REASON = {
+    bank:"Stop the money — your bank can block the transfer and freeze your card fast.",
+    police:"Creates the official police report that banks and investigators need.",
+    scamshield:"Check and report the scam; helps block the numbers and links (1799).",
+    warn:"Their account may be hijacked — warning them stops others being scammed."
+  };
+  var WRONG = {
+    pay:"Pay the “recovery service” — that's a second scam. The Police never charge to recover money.",
+    del:"Delete the chat — that destroys the evidence you need to report."
+  };
 
-  function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
-  function store(){try{return JSON.parse(localStorage.getItem("nextstep_test")||'{"before":[],"after":[],"secs":[]}');}catch(e){return {before:[],after:[],secs:[]};}}
-  function save(s){localStorage.setItem("nextstep_test",JSON.stringify(s));}
-  function stage(id){["before","flow","after","dash"].forEach(function(k){document.getElementById("stage-"+k).classList.toggle("active",k===id);});window.scrollTo(0,0);}
+  var picked=null, seq=[], startT=null, attempt=1;
 
-  function renderChoice(boxId,opts,onPick,selVal){
-    var box=document.getElementById(boxId);box.innerHTML="";
-    opts.forEach(function(o){
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function stage(id){["pick","drill","res"].forEach(function(k){document.getElementById("s-"+k).classList.toggle("active",k===id);});window.scrollTo(0,0);}
+  function store(){try{return JSON.parse(localStorage.getItem("nextstep_drill")||"{}");}catch(e){return {};}}
+  function save(s){localStorage.setItem("nextstep_drill",JSON.stringify(s));}
+
+  function renderPick(){
+    var html="";
+    ["a","b","c"].forEach(function(k){
+      html+='<button class="scen" onclick="Drill.pick(\''+k+'\')"><span class="st">'+esc(SCEN[k].tag)+'</span><span class="sd">'+esc(SCEN[k].msg.slice(0,70))+'…</span></button>';
+    });
+    document.getElementById("scenList").innerHTML=html;
+  }
+
+  function pick(k){
+    picked=k; seq=[];
+    document.getElementById("chatWho").textContent=SCEN[k].who;
+    document.getElementById("chatMsg").textContent=SCEN[k].msg;
+    renderPool(); renderOrder();
+    stage("drill");
+    startT=Date.now();
+  }
+
+  function renderPool(){
+    var box=document.getElementById("pool"); box.innerHTML="";
+    OPTIONS.forEach(function(o){
       var b=document.createElement("button");
-      b.className="opt"+(selVal===o.v?" sel":"");
-      b.textContent=o.label;
-      b.onclick=function(){onPick(o);[].forEach.call(box.children,function(c){c.classList.remove("sel");});b.classList.add("sel");};
+      b.className="optb"; b.disabled=seq.indexOf(o.id)>=0;
+      b.innerHTML="<span>"+esc(o.label)+"</span>"+(seq.indexOf(o.id)>=0?'<span class="pick">#'+(seq.indexOf(o.id)+1)+'</span>':'<span class="pick">+</span>');
+      b.onclick=function(){ if(seq.indexOf(o.id)<0){ seq.push(o.id); renderPool(); renderOrder(); } };
       box.appendChild(b);
     });
+    document.getElementById("doneBtn").disabled = seq.length===0;
   }
+  function renderOrder(){
+    var el=document.getElementById("orderBox");
+    if(!seq.length){ el.innerHTML='<div class="empty">Nothing yet — tap actions below.</div>'; return; }
+    el.innerHTML='<ol>'+seq.map(function(id){return '<li onclick="Drill.remove(\''+id+'\')">'+esc(LABEL[id])+'</li>';}).join("")+'</ol>';
+  }
+  function remove(id){ var i=seq.indexOf(id); if(i>=0){ seq.splice(i,1); renderPool(); renderOrder(); } }
 
-  function initBefore(){
-    renderChoice("beforeOpts",BEFORE_Q,function(o){beforePick=o;document.getElementById("beforeNext").disabled=false;});
-  }
+  function submit(){
+    var secs=Math.round((Date.now()-startT)/100)/10;
+    var firstCorrect = seq[0]==="bank";
+    var orderCorrect = seq.join(",")===CORRECT.join(",");
 
-  function toFlow(){
-    stage("flow");flowStep=0;flowAns={};flowStart=Date.now();
-    if(!RULES){fetch("routes.json").then(function(r){return r.json();}).then(function(d){RULES=d;renderFlow();});}
-    else renderFlow();
-  }
-  function renderFlow(){
-    var q=RULES.questions[flowStep],total=RULES.questions.length;
-    document.getElementById("flowDone").style.display="none";
-    document.getElementById("flowOpts").style.display="block";
-    document.getElementById("flowTitle").textContent=q.title;
-    var sp=document.getElementById("stepper");sp.innerHTML="";
-    for(var i=0;i<total;i++){var p=document.createElement("div");p.className="pip"+(i<flowStep?" done":i===flowStep?" cur":"");sp.appendChild(p);}
-    var box=document.getElementById("flowOpts");box.innerHTML="";
-    q.options.forEach(function(o){
-      var b=document.createElement("button");b.className="opt";b.textContent=o.label;
-      b.onclick=function(){flowAns[q.id]=o.value;if(flowStep<total-1){flowStep++;renderFlow();}else showPeek();};
-      box.appendChild(b);
-    });
-  }
-  function showPeek(){
-    var secs=Math.round((Date.now()-flowStart)/100)/10;
-    var s=store();s.secs.push(secs);save(s);
-    var harm=RULES.harms[flowAns.harm];
-    document.getElementById("stepper").innerHTML="";
-    document.getElementById("flowTitle").textContent="Here's your plan — first step:";
-    document.getElementById("flowOpts").style.display="none";
-    document.getElementById("routePeek").innerHTML="<b>Add — protect now:</b><br>"+esc(harm.add[0])+"<br><br>…plus Check (report) and Tell (get a human). "+secs+"s to here.";
-    document.getElementById("flowDone").style.display="block";
-  }
-
-  function toAfter(){
-    stage("after");
-    renderChoice("afterOpts",BEFORE_Q,function(o){afterPick=o;document.getElementById("afterNext").disabled=false;});
-  }
-
-  function toResults(){
+    // persist attempt 1 vs 2
     var s=store();
-    s.before.push(beforePick&&beforePick.correct?1:0);
-    s.after.push(afterPick&&afterPick.correct?1:0);
+    var keyF = attempt===1?"a1_first":"a2_first", keyT=attempt===1?"a1_time":"a2_time", keyO=attempt===1?"a1_order":"a2_order";
+    s[keyF]=s[keyF]||[]; s[keyT]=s[keyT]||[]; s[keyO]=s[keyO]||[];
+    s[keyF].push(firstCorrect?1:0); s[keyT].push(secs); s[keyO].push(orderCorrect?1:0);
     save(s);
-    renderDash();stage("dash");
+
+    // verdict
+    var big=document.getElementById("vBig");
+    if(orderCorrect){ big.textContent="Perfect ✓"; big.className="big ok"; }
+    else if(firstCorrect){ big.textContent="Good start"; big.className="big ok"; }
+    else { big.textContent="Close"; big.className="big no"; }
+    document.getElementById("vSub").textContent = (firstCorrect?"Right first move — ":"First move should be your bank — ")+secs+"s";
+    document.getElementById("vChips").innerHTML =
+      '<span class="chip '+(firstCorrect?"g":"b")+'">First step '+(firstCorrect?"✓":"✗")+'</span>'+
+      '<span class="chip '+(orderCorrect?"g":"b")+'">Full order '+(orderCorrect?"✓":"✗")+'</span>'+
+      '<span class="chip g">'+secs+'s</span>';
+
+    document.getElementById("rightOrder").innerHTML = CORRECT.map(function(id){
+      return "<li><b>"+esc(LABEL[id])+"</b> — "+esc(REASON[id])+"</li>";
+    }).join("");
+    document.getElementById("wrongs").innerHTML = "<b>Never:</b> "+esc(WRONG.pay)+" &nbsp;·&nbsp; "+esc(WRONG.del);
+
+    document.getElementById("againBtn").textContent = attempt===1 ? "Try again — beat your time" : "Go again";
+    stage("res");
   }
 
-  function pct(arr){if(!arr.length)return 0;return Math.round(100*arr.reduce(function(a,b){return a+b;},0)/arr.length);}
-  function median(arr){if(!arr.length)return null;var a=arr.slice().sort(function(x,y){return x-y;});var m=Math.floor(a.length/2);return a.length%2?a[m]:Math.round((a[m-1]+a[m])*5)/10;}
+  function again(){ attempt = attempt===1?2:2; stage("pick"); }
 
-  function renderDash(){
-    var s=store();
-    var b=pct(s.before),af=pct(s.after);
-    document.getElementById("kBefore").textContent=b+"%";
-    document.getElementById("kAfter").textContent=af+"%";
-    var d=af-b;
-    document.getElementById("kDelta").textContent=(d>=0?"▲ +":"▼ ")+d+" points after using NextStep";
-    var med=median(s.secs);
-    document.getElementById("kSecs").textContent=med===null?"–":med+"s";
-    document.getElementById("kN").textContent=s.before.length+" people tested · "+s.secs.length+" runs timed";
-  }
-
-  function reset(){localStorage.removeItem("nextstep_test");localStorage.removeItem("nextstep_timings");beforePick=afterPick=null;flowStep=0;flowAns={};stage("before");document.getElementById("beforeNext").disabled=true;document.getElementById("afterNext").disabled=true;initBefore();}
-
-  initBefore();
-  return {toFlow:toFlow,toAfter:toAfter,toResults:toResults,reset:reset};
+  renderPick();
+  return { pick:pick, remove:remove, submit:submit, again:again };
 })();
 </script>
 </body>
