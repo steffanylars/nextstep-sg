@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>NextStep SG — Spot-the-scam quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{--sand-0:#FFFFFF;--sand-2:#E9EEF9;--sand-card:#EEF2FB;--ink:#1F2433;--teal-ink:#16246A;--teal:#1D3A8F;--amber:#4372D6;--terra:#C8151B;--ok:#0A7D5A;--line:rgba(31,36,51,.18);--shadow:0 16px 40px rgba(21,36,74,.08);}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sand-0),var(--sand-2));background-attachment:fixed;min-height:100vh;}
+  .wrap{max-width:560px;margin:0 auto;padding:22px 18px 48px;}
+  .brand{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--teal-ink);display:flex;align-items:center;gap:9px;text-decoration:none;}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--amber);}
+  .tabs{display:flex;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin:14px 0 6px;box-shadow:var(--shadow);}
+  .tabs .tab{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--teal);text-decoration:none;padding:9px 6px;border-radius:999px;}
+  .tabs .tab.active{background:var(--amber);color:#fff;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:26px;color:var(--teal-ink);margin:14px 0 2px;letter-spacing:-.5px;}
+  .lede{font-size:14.5px;line-height:1.5;color:rgba(31,36,51,.8);margin:0 0 16px;}
+  .sec-h{font-size:12px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:var(--teal);margin:6px 0 10px;}
+  .reads{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
+  .read{display:block;background:#fff;border:1px solid var(--line);border-left:4px solid var(--terra);border-radius:12px;padding:12px 14px;text-decoration:none;}
+  .read .d{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--terra);}
+  .read .t{font-size:14px;font-weight:700;color:var(--teal-ink);margin:3px 0;line-height:1.35;}
+  .read .s{font-size:11.5px;font-weight:700;color:var(--teal);}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);}
+  .prog{display:flex;gap:5px;margin-bottom:14px;}
+  .prog .p{flex:1;height:5px;border-radius:999px;background:rgba(31,36,51,.14);}
+  .prog .p.done{background:var(--teal);} .prog .p.cur{background:var(--amber);}
+  .q{font-family:'Fraunces',serif;font-weight:600;font-size:19px;line-height:1.3;color:var(--teal-ink);margin:0 0 15px;}
+  .opt{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px;font-weight:600;font-size:14.5px;color:var(--teal-ink);margin-bottom:10px;word-break:break-word;transition:transform .1s;}
+  .opt:active{transform:scale(.99);} .opt:hover{border-color:var(--teal);}
+  .opt.correct{border-color:var(--ok);background:#E6F5EE;}
+  .opt.wrong{border-color:var(--terra);background:#FBEAEA;}
+  .opt:disabled{cursor:default;}
+  .why{font-size:13.5px;line-height:1.5;border-radius:10px;padding:11px 13px;margin-top:4px;}
+  .why.g{background:#E6F5EE;color:#0A5E45;} .why.b{background:#FBEAEA;color:#8A1114;}
+  .why .src{display:inline-block;margin-top:6px;font-weight:700;color:var(--teal);text-decoration:none;font-size:12.5px;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;cursor:pointer;font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;padding:15px;border-radius:12px;background:var(--amber);color:#fff;box-shadow:0 12px 30px rgba(67,114,214,.34);margin-top:6px;}
+  .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);box-shadow:none;margin-top:10px;}
+  .big{font-family:'Fraunces',serif;font-weight:700;font-size:48px;line-height:1;color:var(--teal-ink);text-align:center;}
+  .sub{text-align:center;font-size:14px;color:rgba(31,36,51,.7);margin:6px 0 2px;}
+  .rifa-note{text-align:center;font-size:13.5px;font-weight:700;color:#8A5A00;background:#FFF3D6;border:1px solid #F0D27A;border-radius:10px;padding:9px 12px;margin:16px 0;}
+  .links{margin-top:18px;display:flex;gap:16px;justify-content:center;font-size:13px;flex-wrap:wrap;}
+  .links a{color:var(--teal);font-weight:700;text-decoration:none;}
+  .ic{width:1.05em;height:1.05em;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  code{font-family:ui-monospace,Menlo,monospace;background:var(--sand-card);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
+  <nav class="tabs">
+    <a href="index.html" class="tab">Report</a>
+    <a href="alerts.html" class="tab">News</a>
+    <a href="test.html" class="tab active">Play &amp; win</a>
+  </nav>
+  <h1>Spot-the-scam quiz</h1>
+  <p class="lede">10 quick questions. Learn to tell a real government help page from a fake, and spot this month's scams. Finish to enter the raffle.</p>
+
+  <div class="sec-h">This week's reads (official SPF)</div>
+  <div class="reads" id="reads"></div>
+
+  <div class="sec-h">The quiz</div>
+  <div class="card" id="quizCard"></div>
+
+  <div class="links">
+    <a href="test.html">Try the Scam Drill</a>
+    <a href="alerts.html">All scam alerts</a>
+    <a href="index.html">Back to NextStep</a>
+  </div>
+</div>
+
+<script>
+var VOL=''; // unused placeholder
+// 3 featured recent SPF advisories (real URLs).
+var READS=[
+  {d:"21 Oct 2026", t:"Hijacked WhatsApp accounts of friends asking for loans", u:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261021_police_advisory_on_social_media_impersonation_scams"},
+  {d:"23 Oct 2026", t:"Fake Facebook ads with AI-generated police offering “scam recovery”", u:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261023_police_advisory_on_fake_advertisements_of_ai_generated_police_officer"},
+  {d:"02 Oct 2026", t:"Cheap-product ads on social media leading to phishing sites", u:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261002_police_advisory_on_phishing_scams_involving_fraudulent_social_media_advertisements"}
+];
+var SPF_WA=READS[0].u, SPF_REC=READS[1].u, SPF_ADS=READS[2].u;
+
+// Questions. Each option: {t, ok, why}. One ok per question.
+var QUESTIONS=[
+  {q:"You were scammed and want to report it. Which is the REAL official site?",
+   o:[{t:"www.scamshield.gov.sg",ok:true,why:"Correct. Official Singapore sites end in <code>.gov.sg</code>."},
+      {t:"scamshield-sg.com",why:"Fake. It is not a <code>.gov.sg</code> address."},
+      {t:"scamshield.gov.sg.verify-case.co",why:"Fake. The real site is only <code>scamshield.gov.sg</code>; extra words after it mean a different, fake domain."}]},
+  {q:"Someone shared intimate photos of you. Which is the REAL place to report for a takedown?",
+   o:[{t:"www.osc.gov.sg",ok:true,why:"Correct. The Online Safety Commission on a <code>.gov.sg</code> domain."},
+      {t:"0sc.gov.sg",why:"Fake. That is a zero, not the letter o, a classic look-alike trick."},
+      {t:"osc-gov.sg.com",why:"Fake. Real government domains do not end in <code>.sg.com</code>."}]},
+  {q:"You want to lodge a police report online. Which link is REAL?",
+   o:[{t:"www.police.gov.sg",ok:true,why:"Correct. The Singapore Police Force on <code>.gov.sg</code>."},
+      {t:"spf-police.net",why:"Fake. Official SPF is <code>police.gov.sg</code>, not a <code>.net</code>."},
+      {t:"police.gov.sg.report-now.co",why:"Fake. Anything added after <code>.gov.sg</code> is a different, fake site."}]},
+  {q:"You want free, confidential emotional support. Which is REAL?",
+   o:[{t:"mindline.sg",ok:true,why:"Correct. mindline.sg is the official support site."},
+      {t:"mind-line-sg.com",why:"Fake. Extra hyphens and <code>.com</code> are a look-alike."},
+      {t:"mindline.sg.help.co",why:"Fake. The real site is just <code>mindline.sg</code>."}]},
+  {q:"A friend messages on WhatsApp asking to urgently PayNow them money. Safest move?",
+   o:[{t:"Call them on a number you already have to check first, their account may be hijacked.",ok:true,why:"Correct. Hijacked-account loan scams are common right now.",src:SPF_WA},
+      {t:"Just send it, they are your friend.",why:"Risky. Scammers rely on this.",src:SPF_WA},
+      {t:"Reply asking for their bank details.",why:"No. Verify the person first, on a channel you trust.",src:SPF_WA}]},
+  {q:"An online ad shows a police officer offering to RECOVER money you lost, for a fee. Is it legit?",
+   o:[{t:"No. The Police never advertise or charge to recover scammed money.",ok:true,why:"Correct. Paid “recovery” offers are a second scam.",src:SPF_REC},
+      {t:"Yes, if the officer looks real in the video.",why:"No. Those videos can be AI-generated.",src:SPF_REC},
+      {t:"Maybe, if they ask for only a small fee.",why:"No. Any fee to recover money is a scam.",src:SPF_REC}]},
+  {q:"On a marketplace, a “buyer” sends a link to “receive your payment”. What is it usually?",
+   o:[{t:"A phishing link to steal your bank login, real payouts never need you to click a buyer's link.",ok:true,why:"Correct. Do not click; report the buyer."},
+      {t:"A normal way to get paid.",why:"No. Legit platforms pay you directly, not via a buyer's link."},
+      {t:"Safe if the link has a lock icon.",why:"No. A padlock only means encrypted, not trustworthy."}]},
+  {q:"A branded item is advertised far cheaper than anywhere else on Facebook or TikTok. Most likely?",
+   o:[{t:"A phishing or fake-shop scam, if it is too cheap to be true, it usually is.",ok:true,why:"Correct. These ads lead to sites that steal card or bank details.",src:SPF_ADS},
+      {t:"A genuine clearance sale.",why:"Be careful, this is a common scam hook right now.",src:SPF_ADS},
+      {t:"Safe because it is a big brand's logo.",why:"No. Scammers copy brand logos freely.",src:SPF_ADS}]},
+  {q:"Since July, how much did victims lose to the cheap-product social-media ad scams?",
+   o:[{t:"About $1.4 million",ok:true,why:"Correct, per the SPF advisory (at least 246 cases).",src:SPF_ADS},
+      {t:"About $1,400",why:"Much higher, around $1.4 million.",src:SPF_ADS},
+      {t:"Nothing, no one fell for it",why:"Sadly no, at least 246 cases were reported.",src:SPF_ADS}]},
+  {q:"How many hijacked-WhatsApp loan cases did SPF report?",
+   o:[{t:"At least 128 cases",ok:true,why:"Correct, about $249,000 lost since September.",src:SPF_WA},
+      {t:"Only 2 cases",why:"No, at least 128 were reported.",src:SPF_WA},
+      {t:"None",why:"No, this is an active scam.",src:SPF_WA}]}
+];
+
+var step=0, correct=0, answered=false;
+
+function renderReads(){
+  document.getElementById("reads").innerHTML=READS.map(function(r){
+    return '<a class="read" href="'+r.u+'" target="_blank" rel="noopener"><span class="d">'+r.d+'</span>'+
+      '<div class="t">'+r.t+'</div><span class="s">Source: SPF ↗</span></a>';
+  }).join("");
+}
+
+function renderQ(){
+  var Q=QUESTIONS[step], n=QUESTIONS.length;
+  answered=false;
+  var pips=""; for(var i=0;i<n;i++) pips+='<div class="p'+(i<step?" done":i===step?" cur":"")+'"></div>';
+  var opts=Q.o.map(function(o,idx){
+    return '<button class="opt" id="o'+idx+'" onclick="pick('+idx+')">'+o.t+'</button>';
+  }).join("");
+  document.getElementById("quizCard").innerHTML=
+    '<div class="prog">'+pips+'</div>'+
+    '<div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:8px;">Question '+(step+1)+' of '+n+'</div>'+
+    '<p class="q">'+Q.q+'</p>'+opts+'<div id="fb"></div>';
+}
+
+function pick(idx){
+  if(answered) return; answered=true;
+  var Q=QUESTIONS[step];
+  for(var i=0;i<Q.o.length;i++){
+    var b=document.getElementById("o"+i); b.disabled=true;
+    if(Q.o[i].ok) b.className="opt correct";
+  }
+  var chosen=Q.o[idx];
+  if(!chosen.ok) document.getElementById("o"+idx).className="opt wrong";
+  if(chosen.ok) correct++;
+  var src=chosen.src?('<a class="src" href="'+chosen.src+'" target="_blank" rel="noopener">Source: SPF ↗</a>'):"";
+  document.getElementById("fb").innerHTML=
+    '<div class="why '+(chosen.ok?"g":"b")+'">'+(chosen.ok?"✓ ":"✗ ")+chosen.why+'<br>'+src+'</div>'+
+    '<button class="btn" onclick="nextQ()">'+(step<QUESTIONS.length-1?"Next question":"See my score")+'</button>';
+}
+
+function nextQ(){
+  if(step<QUESTIONS.length-1){ step++; renderQ(); window.scrollTo(0,0); }
+  else finish();
+}
+
+function finish(){
+  var n=QUESTIONS.length, pct=Math.round(100*correct/n);
+  var line = pct===100?"Scam-proof! Perfect score.":pct>=70?"Strong, you can spot most scams.":"Good start, now you know the tricks.";
+  try{var s=JSON.parse(localStorage.getItem("nextstep_quiz")||"[]");s.push(correct);localStorage.setItem("nextstep_quiz",JSON.stringify(s));}catch(e){}
+  document.getElementById("quizCard").innerHTML=
+    '<div class="big">'+correct+'/'+n+'</div>'+
+    '<div class="sub">'+line+'</div>'+
+    '<div class="rifa-note">You are entered in this week\'s raffle.</div>'+
+    '<button class="btn" onclick="location.href=\'index.html?start=scam\'">If a scam happens for real, open NextStep</button>'+
+    '<button class="btn ghost" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Play again</button>';
+  window.scrollTo(0,0);
+}
+
+renderReads();
+renderQ();
+</script>
+</body>
+</html>
