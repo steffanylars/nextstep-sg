@@ -1,5 +1,7 @@
 # NextStep SG
 
+![NextStep SG architecture](architecture.png)
+
 **What it is:** a calm, mobile-first static site that tells a Singapore youth (13–19) exactly what to do in the first 10 minutes after online harm — intimate-image threats, doxxing, harassment, or impersonation. It does **not** detect harm; it guides the victim afterwards.
 **IMDA actions:** maps to **"Report Inappropriate Content"** + **"Engage & Support"**, structured with the **Add / Check / Tell** framework.
 **How routing works:** four tap questions (harm → danger now → under 18 → platform) look up a **deterministic rule table** in [`routes.json`](routes.json) — no AI decides the advice. The optional ElevenLabs voice agent only **converses** and reads back the *same* table; a human (trusted adult) is always the final step.

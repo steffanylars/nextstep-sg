@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="800" viewBox="0 0 1040 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#3E6E78"/>
+    </marker>
+    <style>
+      .box{fill:#fff;stroke:#C8D6DE;stroke-width:1.5;rx:14;}
+      .teal{fill:#3E6E78;} .teal2{fill:#4E7C86;} .navy{fill:#243B52;}
+      .sand{fill:#EEF2FB;stroke:#C8D6DE;stroke-width:1.5;}
+      .h{fill:#243B52;font-weight:700;} .t{fill:#30414E;} .s{fill:#5A6B78;}
+      .wt{fill:#fff;font-weight:700;} .lbl{fill:#3E6E78;font-weight:700;}
+      .edge{stroke:#3E6E78;stroke-width:2;fill:none;marker-end:url(#arr);}
+      .edge.d{stroke-dasharray:5 4;stroke:#9AA7B0;marker-end:url(#arr);}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1040" height="800" fill="#F4F6FB"/>
+
+  <!-- Header -->
+  <text x="40" y="48" font-size="30" class="h">NextStep SG — architecture</text>
+  <text x="40" y="76" font-size="15" class="s">Static site on GitHub Pages · no backend · a deterministic rule engine decides the route · voice only adds, never changes it</text>
+
+  <!-- USER -->
+  <rect x="40" y="110" width="170" height="80" rx="14" class="teal"/>
+  <text x="125" y="145" font-size="16" text-anchor="middle" class="wt">Youth (13–19)</text>
+  <text x="125" y="167" font-size="12.5" text-anchor="middle" fill="#D9E6EA">victim / worried</text>
+
+  <!-- FRONT-END container -->
+  <rect x="270" y="100" width="730" height="300" rx="16" class="sand"/>
+  <text x="290" y="128" font-size="15" class="h">Front-end (HTML/CSS/JS, mobile-first, 3 languages)</text>
+
+  <!-- Report tab -->
+  <rect x="290" y="146" width="330" height="236" rx="12" class="box"/>
+  <text x="305" y="170" font-size="14" class="lbl">REPORT  (index.html)</text>
+  <rect x="305" y="182" width="300" height="40" rx="9" class="box"/>
+  <text x="315" y="207" font-size="13" class="t">4 tap questions: harm · danger · age · platform</text>
+  <rect x="305" y="230" width="300" height="46" rx="9" fill="#E7F0F2" stroke="#9FC2C6" stroke-width="1.5"/>
+  <text x="315" y="250" font-size="13" class="h">Deterministic engine · routes.json</text>
+  <text x="315" y="268" font-size="11.5" class="s">rule table decides — no AI, nothing sent out</text>
+  <rect x="305" y="284" width="300" height="40" rx="9" class="box"/>
+  <text x="315" y="309" font-size="13" class="t">Result: ADD · CHECK · TELL  (+ “Why this route?”)</text>
+  <rect x="305" y="332" width="300" height="40" rx="9" fill="#FBFBF5" stroke="#E6DF9E" stroke-width="1.5"/>
+  <text x="315" y="352" font-size="12.5" class="t">Optional voice note — Web Speech API (client)</text>
+  <text x="315" y="367" font-size="11" class="s">adds a note only · skip = unchanged · fail-silent</text>
+
+  <!-- News + Play + misc -->
+  <rect x="636" y="146" width="348" height="112" rx="12" class="box"/>
+  <text x="651" y="170" font-size="14" class="lbl">NEWS  (alerts.html)</text>
+  <text x="651" y="193" font-size="12.5" class="t">6 real Singapore Police advisories (alerts.js)</text>
+  <text x="651" y="213" font-size="12.5" class="t">“If it happened to you →” jumps into the scam route</text>
+  <text x="651" y="238" font-size="11.5" class="s">no invented items / numbers / dates</text>
+
+  <rect x="636" y="268" width="348" height="114" rx="12" class="box"/>
+  <text x="651" y="292" font-size="14" class="lbl">PLAY &amp; WIN  (quiz.html)</text>
+  <text x="651" y="315" font-size="12.5" class="t">2 quizzes: spot the real .gov.sg site · this month’s scams</text>
+  <text x="651" y="335" font-size="12.5" class="t">perfect score on both → raffle (localStorage)</text>
+  <text x="651" y="360" font-size="11.5" class="s">also: rules.html (audit table) · stats.html</text>
+
+  <!-- VOICE -->
+  <rect x="40" y="440" width="455" height="150" rx="16" class="box"/>
+  <text x="60" y="468" font-size="15" class="h">Voice (ElevenLabs)</text>
+  <rect x="60" y="482" width="415" height="40" rx="9" fill="#E7F0F2" stroke="#9FC2C6" stroke-width="1.5"/>
+  <text x="70" y="507" font-size="12.5" class="t">Pre-generated MP3 clips in /audio — work offline (🔊 Listen)</text>
+  <rect x="60" y="528" width="415" height="44" rx="9" fill="#E7F0F2" stroke="#9FC2C6" stroke-width="1.5"/>
+  <text x="70" y="548" font-size="12.5" class="t">Live Conversational AI agent — scam-first, warm</text>
+  <text x="70" y="564" font-size="11.5" class="s">public agent_id in config.js (safe) · patient turn-taking</text>
+
+  <!-- EXTERNAL -->
+  <rect x="545" y="440" width="455" height="150" rx="16" class="box"/>
+  <text x="565" y="468" font-size="15" class="h">Official Singapore channels (outbound links)</text>
+  <text x="565" y="494" font-size="12.5" class="t">• Online Safety Commission — osc.gov.sg</text>
+  <text x="565" y="514" font-size="12.5" class="t">• Police — police.gov.sg · 999 only for real danger</text>
+  <text x="565" y="534" font-size="12.5" class="t">• ScamShield 1799 · SHECARES@SCWO</text>
+  <text x="565" y="554" font-size="12.5" class="t">• SOS 1767 · mindline.sg  (Engage &amp; Support)</text>
+  <text x="565" y="576" font-size="11.5" class="s">the user reports themselves — we transmit nothing</text>
+
+  <!-- SECURITY / BUILD -->
+  <rect x="40" y="628" width="960" height="120" rx="16" fill="#243B52"/>
+  <text x="60" y="658" font-size="15" class="wt">Security &amp; build</text>
+  <text x="60" y="684" font-size="12.5" fill="#D9E6EA">• ELEVENLABS_API_KEY lives only in .env.local (gitignored) — never in the frontend, never committed.</text>
+  <text x="60" y="706" font-size="12.5" fill="#D9E6EA">• Build scripts gen_audio.py / update_agent.py use the key locally to make the clips and configure the agent.</text>
+  <text x="60" y="728" font-size="12.5" fill="#D9E6EA">• All user data stays on the device (localStorage for language &amp; quiz progress). Nothing is sent to any server.</text>
+
+  <!-- Edges -->
+  <path class="edge" d="M210 150 H268"/>
+  <path class="edge" d="M455 362 C 300 420, 150 420, 150 438"/>
+  <path class="edge" d="M620 254 C 660 320, 720 400, 740 438"/>
+  <path class="edge d" d="M300 572 C 350 610, 430 610, 470 590"/>
+  <text x="232" y="140" font-size="11" class="s">opens</text>
+</svg>
