@@ -170,15 +170,21 @@ function nextQ(){
 }
 
 function finish(){
-  var n=QUESTIONS.length, pct=Math.round(100*correct/n);
-  var line = pct===100?"Scam-proof! Perfect score.":pct>=70?"Strong, you can spot most scams.":"Good start, now you know the tricks.";
+  var n=QUESTIONS.length;
+  var perfect = correct===n;
+  var line = perfect?"Scam-proof! Perfect score.":correct>=7?"Strong, you can spot most scams.":"Good start, now you know the tricks.";
   try{var s=JSON.parse(localStorage.getItem("nextstep_quiz")||"[]");s.push(correct);localStorage.setItem("nextstep_quiz",JSON.stringify(s));}catch(e){}
+  var rifa = perfect
+    ? '<div class="rifa-note">You scored '+n+'/'+n+' — you\'re in this week\'s raffle!</div>'
+    : '<div class="rifa-note" style="background:#EEF2FB;border-color:'+'var(--line)'+';color:var(--teal-ink)">Only a perfect '+n+'/'+n+' enters the raffle. You got '+correct+'/'+n+' — play again to win.</div>';
+  var primary = perfect
+    ? '<button class="btn" onclick="location.href=\'index.html?start=scam\'">If a scam happens for real, open NextStep</button>'+
+      '<button class="btn ghost" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Play again</button>'
+    : '<button class="btn" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Try again for '+n+'/'+n+'</button>'+
+      '<button class="btn ghost" onclick="location.href=\'index.html?start=scam\'">Open NextStep</button>';
   document.getElementById("quizCard").innerHTML=
     '<div class="big">'+correct+'/'+n+'</div>'+
-    '<div class="sub">'+line+'</div>'+
-    '<div class="rifa-note">You are entered in this week\'s raffle.</div>'+
-    '<button class="btn" onclick="location.href=\'index.html?start=scam\'">If a scam happens for real, open NextStep</button>'+
-    '<button class="btn ghost" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Play again</button>';
+    '<div class="sub">'+line+'</div>'+ rifa + primary;
   window.scrollTo(0,0);
 }
 

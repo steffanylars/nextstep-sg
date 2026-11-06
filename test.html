@@ -20,8 +20,9 @@
   .pill{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--terra);border-radius:999px;padding:3px 10px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px;}
   .scen{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px;box-shadow:0 6px 18px rgba(21,36,74,.05);transition:transform .12s,border-color .15s;}
   .scen:active{transform:scale(.99);} .scen:hover{border-color:var(--teal);}
-  .scen .st{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--terra);}
-  .scen .sd{font-weight:600;font-size:15px;color:var(--teal-ink);margin-top:3px;line-height:1.35;}
+  .scen .st{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--terra);}
+  .scen .sd{display:block;font-weight:600;font-size:15px;color:var(--teal-ink);margin-top:3px;line-height:1.35;}
+  .scen .scen-src{display:inline-block;margin-top:9px;font-size:12px;font-weight:700;color:var(--teal);text-decoration:none;}
   /* chat */
   .chat{background:#EAF0FB;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px;}
   .chat .who{font-size:12px;font-weight:800;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
@@ -87,7 +88,8 @@
 
   <!-- STAGE 1: pick -->
   <section id="s-pick" class="stage active">
-    <span class="pill">Choose a scenario</span>
+    <span class="pill">Real cases this month</span>
+    <p class="lede" style="margin:8px 0 14px">Tap a real scam reported by the Police this month and practise what to do.</p>
     <div id="scenList"></div>
   </section>
 
@@ -107,7 +109,7 @@
 
   <!-- STAGE 3: result -->
   <section id="s-res" class="stage">
-    <div class="rifa-note"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17"/></svg> Nice! You're entered in this week's raffle.</div>
+    <a class="rifa-note" href="quiz.html" style="display:block;text-decoration:none"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17"/></svg> Want the raffle? Score 10/10 in the quiz →</a>
     <div class="verdict">
       <div class="big" id="vBig">—</div>
       <div class="sub" id="vSub"></div>
@@ -133,7 +135,7 @@
   <div class="rifa-card">
     <div class="em"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17"/></svg></div>
     <h3>Play &amp; win</h3>
-    <p>Finish the Scam Drill and you're in this week's raffle. Learn the moves, stand a chance to win.</p>
+    <p>Practise the moves here, then score 10/10 in the quiz to enter this week's raffle.</p>
     <button class="btn" onclick="document.getElementById('rifaPop').style.display='none'">Let's go</button>
   </div>
 </div>
@@ -142,9 +144,18 @@
 var Drill = (function(){
   "use strict";
   var SCEN = {
-    a:{who:"WhatsApp · a friend", tag:"Hijacked WhatsApp", msg:"Hey! So paiseh 😅 my bank app is down and I need to pay someone urgently. Can you PayNow me $200 first? I'll return you tonight, promise 🙏"},
-    b:{who:"Carousell · buyer", tag:"Fake buyer link", msg:"Hi! I want to buy your item 😊 I'll pay now, just confirm and receive the payment through this link: carousell-pay-verify.xyz/receive"},
-    c:{who:'Facebook ad · "SPF Recovery"', tag:"Fake “recovery”", msg:"Lost money to a scam? Our officers can help you RECOVER your funds today. Tap to start your claim, limited slots left."}
+    a:{who:"WhatsApp · a friend", tag:"Hijacked WhatsApp", date:"21 Oct 2026",
+       title:"A friend's WhatsApp asks to borrow $200 urgently",
+       url:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261021_police_advisory_on_social_media_impersonation_scams",
+       msg:"Hey! So paiseh 😅 my bank app is down and I need to pay someone urgently. Can you PayNow me $200 first? I'll return you tonight, promise 🙏"},
+    b:{who:"Carousell · buyer", tag:"Fake buyer link", date:"23 Oct 2026",
+       title:"A Carousell buyer sends a link to “receive payment”",
+       url:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261023_police_advisory_on_phishing_scams_involving_fake_buyers_on_online_marketplace",
+       msg:"Hi! I want to buy your item 😊 I'll pay now, just confirm and receive the payment through this link: carousell-pay-verify.xyz/receive"},
+    c:{who:'Facebook ad · "SPF Recovery"', tag:"Fake recovery", date:"23 Oct 2026",
+       title:"A Facebook ad from a “police officer” offers to recover your money",
+       url:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261023_police_advisory_on_fake_advertisements_of_ai_generated_police_officer",
+       msg:"Lost money to a scam? Our officers can help you RECOVER your funds today. Tap to start your claim, limited slots left."}
   };
   var OPTIONS = [
     {id:"police", label:"Lodge a police report"},
@@ -177,7 +188,12 @@ var Drill = (function(){
   function renderPick(){
     var html="";
     ["a","b","c"].forEach(function(k){
-      html+='<button class="scen" onclick="Drill.pick(\''+k+'\')"><span class="st">'+esc(SCEN[k].tag)+'</span><span class="sd">'+esc(SCEN[k].msg.slice(0,70))+'…</span></button>';
+      var s=SCEN[k];
+      html+='<div class="scen" onclick="Drill.pick(\''+k+'\')">'+
+        '<span class="st">'+esc(s.date)+' · '+esc(s.tag)+'</span>'+
+        '<span class="sd">'+esc(s.title)+'</span>'+
+        '<a class="scen-src" href="'+s.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">Source: SPF ↗</a>'+
+        '</div>';
     });
     document.getElementById("scenList").innerHTML=html;
   }
