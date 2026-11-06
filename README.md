@@ -4,7 +4,7 @@
 **IMDA actions:** maps to **"Report Inappropriate Content"** + **"Engage & Support"**, structured with the **Add / Check / Tell** framework.
 **How routing works:** four tap questions (harm → danger now → under 18 → platform) look up a **deterministic rule table** in [`routes.json`](routes.json) — no AI decides the advice. The optional ElevenLabs voice agent only **converses** and reads back the *same* table; a human (trusted adult) is always the final step.
 **Transparency:** every result shows a **"Why this route?"** trace of the exact rule matched, and [`/rules`](rules.html) renders the whole table. Every external link is a `[VERIFY LINK]` placeholder — no URLs are invented.
-**Measurement:** [`/test`](test.html) asks a before question, runs the real flow, asks again, and shows live before/after "knew the right first step" % and median seconds to first plan.
+**Play & win:** [`/quiz`](quiz.html) has two quizzes (spot the real `.gov.sg` site vs look-alikes, and this month's scams from SPF advisories). Acing both with a perfect score enters a raffle.
 
 ## Run locally
 ```bash
@@ -23,7 +23,7 @@ Paste your agent prompt from [`AGENT_PROMPT.md`](AGENT_PROMPT.md) into the Eleve
 
 **Built entirely during this hackathon (new today):**
 - All routing logic and the rule table [`routes.json`](routes.json), the route engine [`app.js`](app.js), and every piece of Add/Check/Tell content.
-- The tap flow, results screen, [`/rules`](rules.html) table, [`/test`](test.html) measurement page.
+- The tap flow, results screen, [`/rules`](rules.html) table, and the [`/quiz`](quiz.html) Play & win quizzes.
 - The ElevenLabs voice agent prompt [`AGENT_PROMPT.md`](AGENT_PROMPT.md) and widget integration.
 
 No benefits data, MILP model, or business logic from Zen was copied; only structure, styling, and the design pattern were adapted.
