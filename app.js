@@ -13,8 +13,11 @@
   var screens = {
     home: document.getElementById("screen-home"),
     flow: document.getElementById("screen-flow"),
+    voice: document.getElementById("screen-voice"),
     results: document.getElementById("screen-results")
   };
+  var voiceNote = null;      // optional free-text addendum (the user's own words)
+  var recog = null, recording = false;
 
   function show(name) {
     Object.keys(screens).forEach(function (k) {
@@ -107,6 +110,7 @@
     if (!RULES) { load().then(start); return; }
     answers = {};
     step = 0;
+    voiceNote = null;
     startTime = Date.now();
     show("flow");
     renderQuestion();
@@ -145,13 +149,56 @@
       step++;
       renderQuestion();
     } else {
-      finish();
+      showVoiceAddendum(); // optional screen before the (unchanged) result
     }
   }
 
   function back() {
+    if (screens.voice.classList.contains("active")) { show("flow"); renderQuestion(); return; }
     if (step > 0) { step--; renderQuestion(); }
     else { show("home"); }
+  }
+
+  /* ---------- Optional voice addendum (purely additive; never changes the route) ---------- */
+  function speechApi() { return window.SpeechRecognition || window.webkitSpeechRecognition; }
+  function setMic(on) {
+    var mic = byId("vaMic"); if (mic) mic.classList.toggle("rec", on);
+    var lab = byId("vaMicLabel"); if (lab) lab.textContent = on ? "Stop" : "Speak";
+  }
+  function showVoiceAddendum() {
+    voiceNote = null;
+    if (!speechApi()) { finish(); return; } // fail silent: no support -> straight to result
+    var t = byId("vaText"); if (t) t.value = "";
+    setMic(false);
+    show("voice");
+  }
+  function vaMic() {
+    var SR = speechApi(); if (!SR) return;
+    var t = byId("vaText");
+    if (recording) { try { recog.stop(); } catch (e) {} return; }
+    recog = new SR();
+    recog.lang = LANG === "zh" ? "zh-CN" : LANG === "ms" ? "ms-MY" : "en-SG";
+    recog.interimResults = true; recog.continuous = true;
+    var base = t.value ? t.value.trim() + " " : "";
+    recog.onresult = function (e) {
+      var txt = ""; for (var i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
+      t.value = base + txt;
+    };
+    recog.onend = function () { recording = false; setMic(false); };
+    recog.onerror = function () { recording = false; setMic(false); };
+    recording = true; setMic(true);
+    try { recog.start(); } catch (e) { recording = false; setMic(false); }
+  }
+  function vaDone() {
+    if (recording) { try { recog.stop(); } catch (e) {} }
+    var v = (byId("vaText") && byId("vaText").value || "").trim();
+    voiceNote = v || null;
+    finish();
+  }
+  function vaSkip() {
+    if (recording) { try { recog.stop(); } catch (e) {} }
+    voiceNote = null;
+    finish();
   }
 
   function restart() { show("home"); }
@@ -162,6 +209,7 @@
     if (!RULES.harms[harm]) { start(); return; }
     answers = { harm: harm };
     step = 1; // Q1 (harm) is already answered.
+    voiceNote = null;
     startTime = Date.now();
     show("flow");
     renderQuestion();
@@ -247,6 +295,9 @@
       '<div class="reassure-line">' + withVerify(route.banner.text) + "</div>" +
       (route.answers.harm === "scam"
         ? '<button class="listen-btn" onclick="NextStep.listenScam()"><svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg> ' + ui("listen") + "</button>"
+        : "") +
+      (voiceNote
+        ? '<div class="added-note"><b>Based on what you added:</b> ' + escapeHtml(voiceNote) + "</div>"
         : "");
   }
 
@@ -388,6 +439,7 @@
   window.NextStep = {
     start: start, startWith: startWith, back: back, restart: restart, tellAdult: tellAdult,
     setLang: setLang, listenScam: listenScam, stopAudio: stopAudio,
+    vaMic: vaMic, vaDone: vaDone, vaSkip: vaSkip,
     _addNext: addNext, _addBack: addBack, _seeAll: seeAll, // one-step results
     computeRoute: computeRoute // exposed for rules.html / tests
   };
