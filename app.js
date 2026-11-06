@@ -18,6 +18,7 @@
   };
   var voiceNote = null;      // optional free-text addendum (the user's own words)
   var recog = null, recording = false;
+  var stepBase = 0;          // index of the first question the user actually answers (0 normally, 1 when harm is preset)
 
   function show(name) {
     Object.keys(screens).forEach(function (k) {
@@ -110,6 +111,7 @@
     if (!RULES) { load().then(start); return; }
     answers = {};
     step = 0;
+    stepBase = 0;
     voiceNote = null;
     startTime = Date.now();
     show("flow");
@@ -118,17 +120,18 @@
 
   function renderQuestion() {
     var q = RULES.questions[step];
-    var total = RULES.questions.length;
+    var total = RULES.questions.length - stepBase; // only the questions the user answers
+    var shown = step - stepBase;                   // 0-based position among those
 
-    document.getElementById("qKicker").textContent = ui("step_of").replace("%1", step + 1).replace("%2", total);
+    document.getElementById("qKicker").textContent = ui("step_of").replace("%1", shown + 1).replace("%2", total);
     document.getElementById("qTitle").textContent = q.title;
-    document.getElementById("backBtn").classList.toggle("show", step > 0);
+    document.getElementById("backBtn").classList.toggle("show", step > stepBase);
 
     var stepper = document.getElementById("stepper");
     stepper.innerHTML = "";
     for (var i = 0; i < total; i++) {
       var pip = document.createElement("div");
-      pip.className = "pip" + (i < step ? " done" : i === step ? " cur" : "");
+      pip.className = "pip" + (i < shown ? " done" : i === shown ? " cur" : "");
       stepper.appendChild(pip);
     }
 
@@ -155,7 +158,7 @@
 
   function back() {
     if (screens.voice.classList.contains("active")) { show("flow"); renderQuestion(); return; }
-    if (step > 0) { step--; renderQuestion(); }
+    if (step > stepBase) { step--; renderQuestion(); }
     else { show("home"); }
   }
 
@@ -209,6 +212,7 @@
     if (!RULES.harms[harm]) { start(); return; }
     answers = { harm: harm };
     step = 1; // Q1 (harm) is already answered.
+    stepBase = 1; // so the stepper counts from "Step 1" of the remaining questions
     voiceNote = null;
     startTime = Date.now();
     show("flow");
