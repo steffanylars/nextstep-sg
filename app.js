@@ -1,4 +1,4 @@
-/* NextStep SG — deterministic route engine.
+/* NextStep SG, deterministic route engine.
  * The engine decides the route from routes.json. No AI, no randomness.
  * AI (ElevenLabs voice) only converses and reads back THIS same table.
  */
@@ -259,7 +259,7 @@
     window.scrollTo(0, 0);
   }
 
-  // PHASE 1 — urgent "protect now" actions, one per screen, no wall of text.
+  // PHASE 1, urgent "protect now" actions, one per screen, no wall of text.
   function drawAdd() {
     var route = resState.route, add = route.add, i = resState.i, total = add.length;
 
@@ -295,7 +295,7 @@
   }
   function seeAll() { resState.phase = "next"; resState.showAllAdd = true; drawResults(); }
 
-  // PHASE 2 — calmer "next" screen: what you did, get a human, report when ready.
+  // PHASE 2, calmer "next" screen: what you did, get a human, report when ready.
   function drawNext() {
     var route = resState.route, a = route.answers;
 

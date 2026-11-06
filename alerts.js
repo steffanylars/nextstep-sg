@@ -1,4 +1,4 @@
-/* NextStep SG — Latest scam alerts.
+/* NextStep SG, Latest scam alerts.
  * SOURCE: official Singapore Police Force advisories only. Dates, titles, stats
  * and URLs are taken verbatim from SPF. Do not add items, numbers or dates that
  * are not from an SPF advisory. The one-line "what" is a plain-language summary
@@ -17,7 +17,7 @@ window.NEXTSTEP_ALERTS = {
     {
       date: "23 Oct 2026",
       title: "Fake Facebook ads with AI-generated police officers offering “scam recovery”",
-      what: "Ads use AI “officers” to offer to recover money you lost — for a fee.",
+      what: "Ads use AI “officers” to offer to recover money you lost, for a fee.",
       stat: "Police never advertise recovery services",
       url: "https://www.police.gov.sg/Media-Hub/News/2026/10/20261023_police_advisory_on_fake_advertisements_of_ai_generated_police_officer"
     },

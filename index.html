@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#16246A" />
-<title>NextStep SG — what to do right now</title>
+<title>NextStep SG, what to do right now</title>
 <meta name="description" content="Calm, step-by-step guidance for the first 10 minutes after online harm. Built for Singapore youth." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,7 +104,7 @@
   .footer-links a{color:var(--teal);text-decoration:none;font-weight:700;}
   .mini{text-align:center;font-size:11.5px;color:rgba(31,36,51,.5);margin-top:16px;line-height:1.5;}
 
-  /* RESULTS — one step at a time + emotional support */
+  /* RESULTS, one step at a time + emotional support */
   .reassure-line{font-size:14.5px;line-height:1.5;color:var(--teal-ink);background:#EAF0FB;border:1px solid rgba(67,114,214,.25);border-radius:var(--radius-sm);padding:12px 15px;margin:4px 0 16px;}
   .reassure-line b{color:var(--teal);}
   .now-kicker{font-size:13px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--terra);margin-bottom:6px;}
@@ -160,6 +160,11 @@
   .home-card.drill{background:var(--amber);color:#fff;box-shadow:0 12px 30px rgba(67,114,214,.3);}
   .home-card.drill .hc-txt span{color:rgba(255,255,255,.88);}
   .home-card.alt{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);justify-content:center;font-weight:700;font-size:15px;}
+
+  /* top tabs */
+  .tabs{display:flex;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin:14px 0 18px;box-shadow:var(--shadow);}
+  .tabs .tab{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--teal);text-decoration:none;padding:9px 6px;border-radius:999px;white-space:nowrap;}
+  .tabs .tab.active{background:var(--amber);color:#fff;}
 </style>
 </head>
 <body>
@@ -173,9 +178,14 @@
   <!-- HOME -->
   <section id="screen-home" class="screen active">
     <div class="brand"><span class="logo-mark"></span> NextStep</div>
+    <nav class="tabs">
+      <a href="index.html" class="tab active" data-i18n="tab_report">Report</a>
+      <a href="alerts.html" class="tab" data-i18n="tab_news">News</a>
+      <a href="test.html" class="tab" data-i18n="tab_play">Play &amp; win</a>
+    </nav>
     <div class="hero">
       <h1 id="t-h1">Something happened online. Let's take the next step together.</h1>
-      <p class="lede" id="t-lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.</p>
+      <p class="lede" id="t-lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you, we help you protect yourself, report it the right way, and tell someone who can help.</p>
       <div class="reassure" id="t-reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
       <button class="home-card scam" onclick="NextStep.startWith('scam')">
         <span class="hc-ic">🛟</span>
@@ -188,7 +198,7 @@
       <button class="home-card alt" onclick="NextStep.start()" data-i18n="home_else">Something else happened</button>
       <div id="voice-slot">
         <div id="voice-label" style="display:none;text-align:center;font-size:14px;font-weight:700;color:#1D3A8F;margin:4px 0 2px;">🎙️ Prefer to talk? Tap the mic to speak instead of tapping.</div>
-        <div id="voice-hint" style="display:none;text-align:center;font-size:12.5px;color:rgba(31,36,51,.55);margin-top:6px;">Voice coming online — add your ElevenLabs agent id in <code style="font-family:ui-monospace,Menlo,monospace">config.js</code> to enable “Talk instead of tapping”.</div>
+        <div id="voice-hint" style="display:none;text-align:center;font-size:12.5px;color:rgba(31,36,51,.55);margin-top:6px;">Voice coming online, add your ElevenLabs agent id in <code style="font-family:ui-monospace,Menlo,monospace">config.js</code> to enable “Talk instead of tapping”.</div>
       </div>
     </div>
     <div class="alerts-sec">

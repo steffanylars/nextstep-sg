@@ -1,6 +1,6 @@
-/* NextStep SG — translations (EN / 中文 / Bahasa Melayu).
+/* NextStep SG, translations (EN / 中文 / Bahasa Melayu).
  * English is the authoritative source (routes.json). The zh/ms "content"
- * blocks mirror routes.json and are machine-assisted — have a native speaker
+ * blocks mirror routes.json and are machine-assisted, have a native speaker
  * review before publishing. Official links are the same in every language.
  */
 window.NEXTSTEP_I18N = {
@@ -10,30 +10,31 @@ window.NEXTSTEP_I18N = {
     note: "",
     ui: {
       home_h1: "Something happened online. Let's take the next step together.",
-      home_lede: "Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.",
+      home_lede: "Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you, we help you protect yourself, report it the right way, and tell someone who can help.",
       home_reassure: "<b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.",
-      start: "Start — it takes 1 minute",
+      start: "Start, it takes 1 minute",
       see_routes: "See all routes", live_test: "Live test",
       mini: "Not an emergency service. If you are in danger, call <b>999</b>. Support: SOS <b>1767</b>.",
       voice_label: "🎙️ Prefer to talk? Tap the mic to speak instead of tapping.",
       step_of: "Step %1 of %2", back: "← Back", start_over: "← Start over",
       now_kicker: "Right now · step %1 of %2",
-      done_next: "Done — next step ✓", done_last: "I've done this — what's next →",
+      done_next: "Done, next step ✓", done_last: "I've done this, what's next →",
       see_all: "Show me everything at once instead",
       protected: "✓ You've protected yourself",
-      hardpart: "<b>That was the hard part — well done.</b> Now the key step: get a real person beside you.",
+      hardpart: "<b>That was the hard part, well done.</b> Now the key step: get a real person beside you.",
       label_tell: "Get a human on your side", sub_tell: "The most important step. You should not do this alone.",
-      label_check: "Report it — when you're ready", sub_check: "No rush. You can do this later today. Confirm each link before relying on it.",
+      label_check: "Report it, when you're ready", sub_check: "No rush. You can do this later today. Confirm each link before relying on it.",
       show_report: "Show the report steps",
       why: "Why this route?",
-      why_intro: "The engine matched your answers against the rule table — no AI decided this, and nothing was sent anywhere:",
+      why_intro: "The engine matched your answers against the rule table, no AI decided this, and nothing was sent anywhere:",
       why_what: "What", why_danger: "Danger now", why_under18: "Under 18", why_platform: "Platform", why_matched: "Matched rule",
       tell_btn: "📨 Send to a trusted adult",
-      support_bar: "<b>Feeling overwhelmed right now?</b> You can talk to someone any time — Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours.",
+      support_bar: "<b>Feeling overwhelmed right now?</b> You can talk to someone any time, Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours.",
       nav_alerts: "Scam alerts", alerts_heading: "Latest scam alerts", alerts_btn: "If it happened to you →",
       home_scam_title: "I'm being scammed", home_scam_sub: "The first-10-minutes plan: bank, police, ScamShield",
       home_drill_title: "Scam Drill", home_drill_sub: "Practice in 60 seconds",
-      home_else: "Something else happened", nav_drill: "Scam Drill"
+      home_else: "Something else happened", nav_drill: "Scam Drill",
+      tab_report: "Report", tab_news: "News", tab_play: "Play & win"
     }
   },
 
@@ -44,18 +45,18 @@ window.NEXTSTEP_I18N = {
       home_h1: "网上发生了一些事。让我们一起走下一步。",
       home_lede: "在最初的几分钟里，给你冷静、清楚的指引。我们不评判，也不替你决定——我们帮你保护自己、用正确的方式举报，并告诉能帮你的人。",
       home_reassure: "<b>你没有做错事。先别删除任何东西。</b> 点四下，你就会有清楚的计划。",
-      start: "开始 — 只需 1 分钟",
+      start: "开始, 只需 1 分钟",
       see_routes: "查看所有路线", live_test: "现场测试",
       mini: "这不是紧急服务。如果有危险，请拨打 <b>999</b>。情绪支持：SOS <b>1767</b>。",
       voice_label: "🎙️ 想用说的？点麦克风，用语音代替点击。",
       step_of: "第 %1 步，共 %2 步", back: "← 返回", start_over: "← 重新开始",
       now_kicker: "现在 · 第 %1 步，共 %2 步",
-      done_next: "完成 — 下一步 ✓", done_last: "我做好了 — 接下来 →",
+      done_next: "完成, 下一步 ✓", done_last: "我做好了, 接下来 →",
       see_all: "我想一次看到全部",
       protected: "✓ 你已经保护好自己了",
       hardpart: "<b>最难的部分过去了，做得很好。</b> 接下来最重要的一步：让一个真实的人在你身边。",
       label_tell: "找一个人站在你这边", sub_tell: "最重要的一步。你不该一个人面对。",
-      label_check: "举报 — 等你准备好", sub_check: "不用急，今天晚点做也行。使用前请先确认每个链接。",
+      label_check: "举报, 等你准备好", sub_check: "不用急，今天晚点做也行。使用前请先确认每个链接。",
       show_report: "显示举报步骤",
       why: "为什么是这条路线？",
       why_intro: "系统把你的答案对照规则表——不是 AI 决定的，也没有把任何资料发送出去：",
@@ -65,7 +66,8 @@ window.NEXTSTEP_I18N = {
       nav_alerts: "诈骗警报", alerts_heading: "最新诈骗警报", alerts_btn: "如果你遇到了 →",
       home_scam_title: "我被骗了", home_scam_sub: "最初 10 分钟的步骤：银行、报警、ScamShield",
       home_drill_title: "诈骗演练", home_drill_sub: "60 秒练习一次",
-      home_else: "发生了别的事", nav_drill: "诈骗演练"
+      home_else: "发生了别的事", nav_drill: "诈骗演练",
+      tab_report: "举报", tab_news: "新闻", tab_play: "玩游戏赢奖"
     },
     content: {
       questions: [
@@ -95,7 +97,7 @@ window.NEXTSTEP_I18N = {
       },
       support: { label: "你值得被支持。这些都是免费且保密的：", lines: [
         "新加坡援人协会 (SOS)：拨打 1767 或发短信 9151 1767，24 小时",
-        "mindline.sg — 免费心理健康支持：https://mindline.sg" ] },
+        "mindline.sg, 免费心理健康支持：https://mindline.sg" ] },
       harms: {
         intimate_images: { label: "私密照片被分享或被威胁", headline: "先保护你。你没有做错事。", add: [
           "先别删除任何东西。那些讯息和贴文是你的证据。", "把讯息或贴文截图，要能看到用户名、日期和链接 (URL)。",
@@ -155,30 +157,31 @@ window.NEXTSTEP_I18N = {
     note: "Terjemahan dibantu mesin; sila rujuk versi Bahasa Inggeris untuk maklumat rasmi.",
     ui: {
       home_h1: "Sesuatu berlaku dalam talian. Mari ambil langkah seterusnya bersama.",
-      home_lede: "Panduan ringkas dan tenang untuk beberapa minit pertama. Kami tidak menghakimi dan tidak membuat keputusan untuk awak — kami bantu awak lindungi diri, laporkan dengan cara betul, dan beritahu seseorang yang boleh bantu.",
+      home_lede: "Panduan ringkas dan tenang untuk beberapa minit pertama. Kami tidak menghakimi dan tidak membuat keputusan untuk awak, kami bantu awak lindungi diri, laporkan dengan cara betul, dan beritahu seseorang yang boleh bantu.",
       home_reassure: "<b>Awak tidak dalam masalah. Jangan padam apa-apa dahulu.</b> Empat ketikan dan awak akan ada pelan yang jelas.",
-      start: "Mula — ambil masa 1 minit",
+      start: "Mula, ambil masa 1 minit",
       see_routes: "Lihat semua laluan", live_test: "Ujian langsung",
       mini: "Ini bukan perkhidmatan kecemasan. Jika dalam bahaya, hubungi <b>999</b>. Sokongan: SOS <b>1767</b>.",
       voice_label: "🎙️ Lebih selesa bercakap? Ketik mikrofon untuk bercakap.",
       step_of: "Langkah %1 drpd %2", back: "← Kembali", start_over: "← Mula semula",
       now_kicker: "Sekarang · langkah %1 drpd %2",
-      done_next: "Selesai — langkah seterusnya ✓", done_last: "Saya dah buat — apa seterusnya →",
+      done_next: "Selesai, langkah seterusnya ✓", done_last: "Saya dah buat, apa seterusnya →",
       see_all: "Tunjukkan semua sekali gus",
       protected: "✓ Awak dah lindungi diri",
-      hardpart: "<b>Itu bahagian paling susah — syabas.</b> Kini langkah utama: dapatkan orang sebenar di sisi awak.",
+      hardpart: "<b>Itu bahagian paling susah, syabas.</b> Kini langkah utama: dapatkan orang sebenar di sisi awak.",
       label_tell: "Dapatkan seseorang di pihak awak", sub_tell: "Langkah paling penting. Awak tidak patut hadapinya seorang diri.",
-      label_check: "Laporkan — bila awak dah bersedia", sub_check: "Tak perlu tergesa. Boleh buat kemudian hari ini. Sahkan setiap pautan sebelum guna.",
+      label_check: "Laporkan, bila awak dah bersedia", sub_check: "Tak perlu tergesa. Boleh buat kemudian hari ini. Sahkan setiap pautan sebelum guna.",
       show_report: "Tunjukkan langkah laporan",
       why: "Kenapa laluan ini?",
-      why_intro: "Enjin memadankan jawapan awak dengan jadual peraturan — bukan AI yang putuskan, dan tiada apa-apa dihantar ke mana-mana:",
+      why_intro: "Enjin memadankan jawapan awak dengan jadual peraturan, bukan AI yang putuskan, dan tiada apa-apa dihantar ke mana-mana:",
       why_what: "Jenis", why_danger: "Bahaya sekarang", why_under18: "Bawah 18", why_platform: "Platform", why_matched: "Peraturan dipadankan",
       tell_btn: "📨 Hantar kepada orang dewasa dipercayai",
-      support_bar: "<b>Rasa terbeban sekarang?</b> Awak boleh berbual dengan seseorang bila-bila masa — Samaritans of Singapore (SOS): hubungi <b>1767</b> atau teks <b>9151 1767</b>, 24 jam.",
+      support_bar: "<b>Rasa terbeban sekarang?</b> Awak boleh berbual dengan seseorang bila-bila masa, Samaritans of Singapore (SOS): hubungi <b>1767</b> atau teks <b>9151 1767</b>, 24 jam.",
       nav_alerts: "Amaran penipuan", alerts_heading: "Amaran penipuan terkini", alerts_btn: "Jika ia berlaku pada awak →",
       home_scam_title: "Saya ditipu", home_scam_sub: "Pelan 10 minit pertama: bank, polis, ScamShield",
       home_drill_title: "Latihan penipuan", home_drill_sub: "Berlatih dalam 60 saat",
-      home_else: "Sesuatu yang lain berlaku", nav_drill: "Latihan penipuan"
+      home_else: "Sesuatu yang lain berlaku", nav_drill: "Latihan penipuan",
+      tab_report: "Lapor", tab_news: "Berita", tab_play: "Main & menang"
     },
     content: {
       questions: [
@@ -208,20 +211,20 @@ window.NEXTSTEP_I18N = {
       },
       support: { label: "Awak layak dapat sokongan. Ini percuma dan sulit:", lines: [
         "Samaritans of Singapore (SOS): hubungi 1767 atau teks 9151 1767, 24 jam",
-        "mindline.sg — sokongan kesihatan mental percuma: https://mindline.sg" ] },
+        "mindline.sg, sokongan kesihatan mental percuma: https://mindline.sg" ] },
       harms: {
         intimate_images: { label: "Gambar intim dikongsi atau diugut", headline: "Mari lindungi awak dahulu. Awak tidak dalam masalah.", add: [
           "Jangan padam apa-apa dahulu. Mesej dan siaran itu bukti awak.", "Tangkap skrin mesej/siaran supaya nampak nama pengguna, tarikh dan pautan (URL).",
           "Jangan hantar gambar itu kepada sesiapa, walaupun untuk bukti.", "Jangan balas ugutan atau bayar jika ada yang memeras wang.", "Sekat orang itu HANYA SELEPAS awak tangkap skrin." ],
           check: [ "Laporkan di platform tempat ia berlaku (langkah di bawah).",
-          "Laporkan terus kepada Online Safety Commission (OSC) untuk ditarik turun — penderaan imej intim boleh dilaporkan terus, percuma: https://www.osc.gov.sg",
-          "Untuk bantuan khusus (kaunseling, klinik undang-undang percuma, tarik turun cepat), hubungi SHECARES@SCWO: 8001 01 4616 atau WhatsApp 8985 5528 (Isnin–Jumaat 9pg–9mlm) — https://she.org.sg" ],
+          "Laporkan terus kepada Online Safety Commission (OSC) untuk ditarik turun, penderaan imej intim boleh dilaporkan terus, percuma: https://www.osc.gov.sg",
+          "Untuk bantuan khusus (kaunseling, klinik undang-undang percuma, tarik turun cepat), hubungi SHECARES@SCWO: 8001 01 4616 atau WhatsApp 8985 5528 (Isnin–Jumaat 9pg–9mlm), https://she.org.sg" ],
           tell: [ "Berbual dengan seseorang yang awak percaya hari ini. Jangan tanggung sendirian." ] },
         doxxing: { label: "Maklumat peribadi disiarkan (doxxing)", headline: "Mari amankan maklumat awak dan tarik turun.", add: [
           "Jangan padam apa-apa dahulu. Simpan siaran sebagai bukti.", "Tangkap skrin siaran dengan nama pengguna, tarikh dan pautan (URL).",
           "Catat di mana maklumat awak muncul (aplikasi mana, akaun mana).", "Jadikan akaun awak peribadi dan hidupkan log masuk dua faktor jika boleh.", "Sekat orang itu SELEPAS tangkap skrin." ],
           check: [ "Laporkan siaran di platform (langkah di bawah) dan minta ia dibuang.",
-          "Laporkan terus kepada Online Safety Commission (OSC) — doxxing boleh dilaporkan terus, percuma: https://www.osc.gov.sg",
+          "Laporkan terus kepada Online Safety Commission (OSC), doxxing boleh dilaporkan terus, percuma: https://www.osc.gov.sg",
           "Menyiarkan maklumat peribadi orang untuk mengganggu mungkin satu kesalahan di bawah Akta Perlindungan daripada Gangguan." ],
           tell: [ "Beritahu seseorang yang awak percaya supaya tidak menghadapinya sendirian." ] },
         harassment: { label: "Gangguan atau buli", headline: "Ini bukan salah awak. Mari perlahankan dan cari bantuan.", add: [
@@ -242,12 +245,12 @@ window.NEXTSTEP_I18N = {
           "Hubungi bank awak segera untuk sekat transaksi dan bekukan kad jika wang dihantar atau butiran kad dikongsi.",
           "Tangkap skrin sembang, akaun atau nombor, dan butiran pindahan.",
           "Jika awak kongsi kata laluan atau OTP, tukar sekarang.",
-          "Jangan padam perbualan — ia bukti." ],
+          "Jangan padam perbualan, ia bukti." ],
           check: [ "Laporkan akaun penipu di platform (langkah di bawah).",
-          "Buat laporan Polis — ini penting walaupun awak lapor di tempat lain: https://www.police.gov.sg/e-services/lodge-police-report",
+          "Buat laporan Polis, ini penting walaupun awak lapor di tempat lain: https://www.police.gov.sg/e-services/lodge-police-report",
           "Hubungi Talian ScamShield 24 jam di 1799 untuk semak dan laporkan penipuan: https://www.scamshield.gov.sg",
-          "Jangan sekali-kali bayar sesiapa yang janji 'memulihkan' wang awak. Polis tidak menawarkan perkhidmatan pemulihan berbayar — itu juga penipuan." ],
-          tell: [ "Beritahu seseorang yang awak percaya — penipuan bergantung pada awak rasa malu untuk bersuara." ] }
+          "Jangan sekali-kali bayar sesiapa yang janji 'memulihkan' wang awak. Polis tidak menawarkan perkhidmatan pemulihan berbayar, itu juga penipuan." ],
+          tell: [ "Beritahu seseorang yang awak percaya, penipuan bergantung pada awak rasa malu untuk bersuara." ] }
       },
       modifiers: {
         danger_now_yes: { banner: "emergency",

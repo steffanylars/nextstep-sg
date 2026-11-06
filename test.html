@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title>NextStep SG — Scam Drill</title>
+<title>NextStep SG, Scam Drill</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -55,6 +55,15 @@
   .links{margin-top:20px;display:flex;gap:16px;justify-content:center;font-size:13px;flex-wrap:wrap;}
   .links a{color:var(--teal);font-weight:700;text-decoration:none;}
   .topbar{display:flex;align-items:center;justify-content:space-between;}
+  .tabs{display:flex;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin:14px 0 6px;box-shadow:var(--shadow);}
+  .tabs .tab{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--teal);text-decoration:none;padding:9px 6px;border-radius:999px;white-space:nowrap;}
+  .tabs .tab.active{background:var(--amber);color:#fff;}
+  .rifa-note{text-align:center;font-size:13.5px;font-weight:700;color:#8A5A00;background:#FFF3D6;border:1px solid #F0D27A;border-radius:10px;padding:9px 12px;margin-bottom:14px;}
+  .rifa-pop{position:fixed;inset:0;background:rgba(21,36,74,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:24px;}
+  .rifa-card{background:#fff;border-radius:22px;padding:28px 24px;max-width:360px;text-align:center;box-shadow:0 24px 60px rgba(21,36,74,.35);}
+  .rifa-card .em{font-size:46px;line-height:1;}
+  .rifa-card h3{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:var(--teal-ink);margin:12px 0 6px;}
+  .rifa-card p{font-size:14.5px;line-height:1.5;color:rgba(31,36,51,.8);margin:0 0 18px;}
 </style>
 </head>
 <body>
@@ -63,6 +72,11 @@
     <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
     <a class="brand" href="stats.html" style="font-size:13px;color:var(--teal);">Results →</a>
   </div>
+  <nav class="tabs">
+    <a href="index.html" class="tab">Report</a>
+    <a href="alerts.html" class="tab">News</a>
+    <a href="test.html" class="tab active">Play &amp; win</a>
+  </nav>
   <h1>Scam Drill</h1>
   <p class="lede">Practice in 60 seconds. Pick a real scam, then put the recovery steps in the best order. Try twice and beat your time.</p>
 
@@ -78,15 +92,16 @@
       <div class="who" id="chatWho"></div>
       <div class="bubble" id="chatMsg"></div>
     </div>
-    <p class="prompt">You already paid or shared your details. What do you do — and in what order?</p>
+    <p class="prompt">You already paid or shared your details. What do you do, and in what order?</p>
     <p class="hint">Tap the actions in the best order. Tap one in your list to remove it.</p>
     <div class="order"><div class="oh">Your order</div><div id="orderBox"></div></div>
     <div class="pool" id="pool"></div>
-    <button class="btn" id="doneBtn" disabled onclick="Drill.submit()">Done — see result</button>
+    <button class="btn" id="doneBtn" disabled onclick="Drill.submit()">Done, see result</button>
   </section>
 
   <!-- STAGE 3: result -->
   <section id="s-res" class="stage">
+    <div class="rifa-note">🎟️ Nice! You're entered in this week's raffle.</div>
     <div class="verdict">
       <div class="big" id="vBig">—</div>
       <div class="sub" id="vSub"></div>
@@ -98,7 +113,7 @@
     </div>
     <div class="wrongs" id="wrongs"></div>
     <button class="btn" onclick="location.href='index.html?start=scam'">If this happens for real → open NextStep</button>
-    <button class="btn ghost" id="againBtn" onclick="Drill.again()">Try again — beat your time</button>
+    <button class="btn ghost" id="againBtn" onclick="Drill.again()">Try again, beat your time</button>
     <div class="links">
       <a href="stats.html">See everyone's results</a>
       <a href="index.html">Back to NextStep</a>
@@ -106,13 +121,22 @@
   </section>
 </div>
 
+<div class="rifa-pop" id="rifaPop">
+  <div class="rifa-card">
+    <div class="em">🎟️</div>
+    <h3>Play &amp; win</h3>
+    <p>Finish the Scam Drill and you're in this week's raffle. Learn the moves, stand a chance to win.</p>
+    <button class="btn" onclick="document.getElementById('rifaPop').style.display='none'">Let's go</button>
+  </div>
+</div>
+
 <script>
 var Drill = (function(){
   "use strict";
   var SCEN = {
     a:{who:"WhatsApp · a friend", tag:"Hijacked WhatsApp", msg:"Hey! So paiseh 😅 my bank app is down and I need to pay someone urgently. Can you PayNow me $200 first? I'll return you tonight, promise 🙏"},
-    b:{who:"Carousell · buyer", tag:"Fake buyer link", msg:"Hi! I want to buy your item 😊 I'll pay now — just confirm and receive the payment through this link: carousell-pay-verify.xyz/receive"},
-    c:{who:'Facebook ad · "SPF Recovery"', tag:"Fake “recovery”", msg:"Lost money to a scam? Our officers can help you RECOVER your funds today. Tap to start your claim — limited slots left."}
+    b:{who:"Carousell · buyer", tag:"Fake buyer link", msg:"Hi! I want to buy your item 😊 I'll pay now, just confirm and receive the payment through this link: carousell-pay-verify.xyz/receive"},
+    c:{who:'Facebook ad · "SPF Recovery"', tag:"Fake “recovery”", msg:"Lost money to a scam? Our officers can help you RECOVER your funds today. Tap to start your claim, limited slots left."}
   };
   var OPTIONS = [
     {id:"police", label:"Lodge a police report"},
@@ -125,14 +149,14 @@ var Drill = (function(){
   var CORRECT = ["bank","police","scamshield","warn"];
   var LABEL = {}; OPTIONS.forEach(function(o){LABEL[o.id]=o.label;});
   var REASON = {
-    bank:"Stop the money — your bank can block the transfer and freeze your card fast.",
+    bank:"Stop the money, your bank can block the transfer and freeze your card fast.",
     police:"Creates the official police report that banks and investigators need.",
     scamshield:"Check and report the scam; helps block the numbers and links (1799).",
-    warn:"Their account may be hijacked — warning them stops others being scammed."
+    warn:"Their account may be hijacked, warning them stops others being scammed."
   };
   var WRONG = {
-    pay:"Pay the “recovery service” — that's a second scam. The Police never charge to recover money.",
-    del:"Delete the chat — that destroys the evidence you need to report."
+    pay:"Pay the “recovery service”, that's a second scam. The Police never charge to recover money.",
+    del:"Delete the chat, that destroys the evidence you need to report."
   };
 
   var picked=null, seq=[], startT=null, attempt=1;
@@ -172,7 +196,7 @@ var Drill = (function(){
   }
   function renderOrder(){
     var el=document.getElementById("orderBox");
-    if(!seq.length){ el.innerHTML='<div class="empty">Nothing yet — tap actions below.</div>'; return; }
+    if(!seq.length){ el.innerHTML='<div class="empty">Nothing yet, tap actions below.</div>'; return; }
     el.innerHTML='<ol>'+seq.map(function(id){return '<li onclick="Drill.remove(\''+id+'\')">'+esc(LABEL[id])+'</li>';}).join("")+'</ol>';
   }
   function remove(id){ var i=seq.indexOf(id); if(i>=0){ seq.splice(i,1); renderPool(); renderOrder(); } }
@@ -194,18 +218,18 @@ var Drill = (function(){
     if(orderCorrect){ big.textContent="Perfect ✓"; big.className="big ok"; }
     else if(firstCorrect){ big.textContent="Good start"; big.className="big ok"; }
     else { big.textContent="Close"; big.className="big no"; }
-    document.getElementById("vSub").textContent = (firstCorrect?"Right first move — ":"First move should be your bank — ")+secs+"s";
+    document.getElementById("vSub").textContent = (firstCorrect?"Right first move, ":"First move should be your bank, ")+secs+"s";
     document.getElementById("vChips").innerHTML =
       '<span class="chip '+(firstCorrect?"g":"b")+'">First step '+(firstCorrect?"✓":"✗")+'</span>'+
       '<span class="chip '+(orderCorrect?"g":"b")+'">Full order '+(orderCorrect?"✓":"✗")+'</span>'+
       '<span class="chip g">'+secs+'s</span>';
 
     document.getElementById("rightOrder").innerHTML = CORRECT.map(function(id){
-      return "<li><b>"+esc(LABEL[id])+"</b> — "+esc(REASON[id])+"</li>";
+      return "<li><b>"+esc(LABEL[id])+"</b>, "+esc(REASON[id])+"</li>";
     }).join("");
     document.getElementById("wrongs").innerHTML = "<b>Never:</b> "+esc(WRONG.pay)+" &nbsp;·&nbsp; "+esc(WRONG.del);
 
-    document.getElementById("againBtn").textContent = attempt===1 ? "Try again — beat your time" : "Go again";
+    document.getElementById("againBtn").textContent = attempt===1 ? "Try again, beat your time" : "Go again";
     stage("res");
   }
 

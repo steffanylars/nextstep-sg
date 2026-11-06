@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NextStep SG — Scam Drill results</title>
+<title>NextStep SG, Scam Drill results</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -31,7 +31,7 @@
 <body>
 <div class="wrap">
   <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
-  <h1>Scam Drill — live results</h1>
+  <h1>Scam Drill, live results</h1>
   <p class="lede">What changes between people's 1st and 2nd attempt at the drill.</p>
   <div id="dash"></div>
   <div class="links">
@@ -46,7 +46,7 @@ function render(){
   var s={}; try{s=JSON.parse(localStorage.getItem("nextstep_drill")||"{}");}catch(e){}
   var n=(s.a1_first||[]).length;
   var el=document.getElementById("dash");
-  if(!n){ el.innerHTML='<div class="empty">No drills yet. Open the Scam Drill, play it twice, and the numbers appear here — live.</div>'; return; }
+  if(!n){ el.innerHTML='<div class="empty">No drills yet. Open the Scam Drill, play it twice, and the numbers appear here, live.</div>'; return; }
   var b=pct(s.a1_first), a=pct(s.a2_first), d=a-b;
   var t1=med(s.a1_time), t2=med(s.a2_time);
   el.innerHTML=

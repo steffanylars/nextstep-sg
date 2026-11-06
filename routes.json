@@ -61,7 +61,7 @@
     "label": "You deserve support. These are free and confidential:",
     "lines": [
       "Samaritans of Singapore (SOS): call 1767 or text 9151 1767, 24 hours",
-      "mindline.sg — free mental health support: https://mindline.sg"
+      "mindline.sg, free mental health support: https://mindline.sg"
     ]
   },
 
@@ -78,8 +78,8 @@
       ],
       "check": [
         "Report it on the platform where it happened (steps below).",
-        "Report directly to the Online Safety Commission (OSC) to get it taken down — intimate-image abuse can be reported straight away, free: https://www.osc.gov.sg",
-        "For specialised help (counselling, free legal clinic, fast takedowns), contact SHECARES@SCWO: call 8001 01 4616 or WhatsApp 8985 5528 (Mon–Fri 9am–9pm) — https://she.org.sg"
+        "Report directly to the Online Safety Commission (OSC) to get it taken down, intimate-image abuse can be reported straight away, free: https://www.osc.gov.sg",
+        "For specialised help (counselling, free legal clinic, fast takedowns), contact SHECARES@SCWO: call 8001 01 4616 or WhatsApp 8985 5528 (Mon–Fri 9am–9pm), https://she.org.sg"
       ],
       "tell": [
         "Talk to someone you trust today. You should not carry this alone."
@@ -98,7 +98,7 @@
       ],
       "check": [
         "Report the post on the platform (steps below) and ask for it to be removed.",
-        "Report directly to the Online Safety Commission (OSC) — doxxing can be reported straight away, free: https://www.osc.gov.sg",
+        "Report directly to the Online Safety Commission (OSC), doxxing can be reported straight away, free: https://www.osc.gov.sg",
         "Posting someone's private info to harass them may be an offence under the Protection from Harassment Act."
       ],
       "tell": [
@@ -151,16 +151,16 @@
         "Contact your bank immediately to block the transaction and freeze your card if money was sent or card details were shared.",
         "Screenshot the chats, the account or number, and any transfer details.",
         "If you shared a password or OTP, change it now.",
-        "Don't delete the conversation — it's evidence."
+        "Don't delete the conversation, it's evidence."
       ],
       "check": [
         "Report the scam account on the platform (steps below).",
-        "Lodge a Police report — this matters even if you report elsewhere: https://www.police.gov.sg/e-services/lodge-police-report",
+        "Lodge a Police report, this matters even if you report elsewhere: https://www.police.gov.sg/e-services/lodge-police-report",
         "Call the 24/7 ScamShield Helpline at 1799 to check and report the scam: https://www.scamshield.gov.sg",
-        "Never pay anyone who promises to 'recover' your lost money. The Police do not offer paid recovery services — those are scams too."
+        "Never pay anyone who promises to 'recover' your lost money. The Police do not offer paid recovery services, those are scams too."
       ],
       "tell": [
-        "Tell someone you trust — scams rely on you feeling too embarrassed to speak up."
+        "Tell someone you trust, scams rely on you feeling too embarrassed to speak up."
       ]
     }
   },

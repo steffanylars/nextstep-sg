@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NextStep SG — the full route table</title>
+<title>NextStep SG, the full route table</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -38,7 +38,7 @@
   <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
   <h1>The full route table</h1>
   <p class="lede">NextStep is <b>deterministic</b>: your four answers look up a fixed rule in this table. No AI decides the advice. This page is the whole table, so anyone can audit exactly what the app will say.</p>
-  <p class="note">Every external link is a <span class="verify">VERIFY LINK</span> placeholder. We do not invent URLs — confirm each official channel before publishing.</p>
+  <p class="note">Every external link is a <span class="verify">VERIFY LINK</span> placeholder. We do not invent URLs, confirm each official channel before publishing.</p>
 
   <div id="tables"></div>
 
@@ -56,7 +56,7 @@ fetch("routes.json").then(function(r){return r.json();}).then(function(d){
   // 1) Harm routes: Add / Check / Tell
   html+='<h2>1 · Harm routes <span class="pill">Add / Check / Tell</span></h2>';
   html+='<table><caption>What the user picks in question 1 → the three sections shown</caption>';
-  html+='<thead><tr><th style="width:17%">Harm (Q1)</th><th>Add — protect now</th><th>Check — report</th><th>Tell — get a human</th></tr></thead><tbody>';
+  html+='<thead><tr><th style="width:17%">Harm (Q1)</th><th>Add, protect now</th><th>Check, report</th><th>Tell, get a human</th></tr></thead><tbody>';
   Object.keys(d.harms).forEach(function(k){
     var h=d.harms[k];
     html+='<tr><td><code>'+esc(k)+'</code><br><br>'+esc(h.label)+'</td>'+
@@ -90,11 +90,11 @@ fetch("routes.json").then(function(r){return r.json();}).then(function(d){
   html+='<h2>4 · Always shown</h2>';
   html+='<table><thead><tr><th style="width:22%">Element</th><th>Content</th></tr></thead><tbody>';
   html+='<tr><td>Emotional support</td><td>'+li(d.support.lines)+'</td></tr>';
-  html+='<tr><td>Trusted-adult message</td><td>"'+esc(d.trusted_adult_message)+'" <br><small>(shared via the phone\'s share sheet or SMS — never the image)</small></td></tr>';
+  html+='<tr><td>Trusted-adult message</td><td>"'+esc(d.trusted_adult_message)+'" <br><small>(shared via the phone\'s share sheet or SMS, never the image)</small></td></tr>';
   html+='</tbody></table>';
 
   document.getElementById("tables").innerHTML=html;
-}).catch(function(){document.getElementById("tables").innerHTML='<p>Could not load routes.json — run a local server.</p>';});
+}).catch(function(){document.getElementById("tables").innerHTML='<p>Could not load routes.json, run a local server.</p>';});
 </script>
 </body>
 </html>
