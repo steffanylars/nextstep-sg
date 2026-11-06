@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#0B3D37" />
+<title>NextStep SG — what to do right now</title>
+<meta name="description" content="Calm, step-by-step guidance for the first 10 minutes after online harm. Built for Singapore youth." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sand-0:#FBFAF7; --sand-1:#F3EFE7; --sand-2:#ECE5D8; --sand-card:#F4F1EA;
+    --ink:#14342F; --teal-ink:#0B3D37; --teal:#1B7A7E;
+    --amber:#E8A04C; --terra:#D9735A;
+    --line:rgba(20,52,47,.18);
+    --shadow:0 16px 40px rgba(8,42,38,.08);
+    --radius:20px; --radius-sm:13px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,var(--sand-0) 0%,var(--sand-1) 55%,var(--sand-2) 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:540px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column;}
+  .brand{font-family:'Fraunces',serif;font-weight:500;font-size:22px;letter-spacing:-.5px;color:var(--teal-ink);display:flex;align-items:center;gap:9px;}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(232,160,76,.22);}
+  .screen{display:none;flex:1;flex-direction:column;animation:fade .3s ease;}
+  .screen.active{display:flex;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  /* HOME */
+  .hero{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:12px 0;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:34px;line-height:1.1;color:var(--teal-ink);margin:0;letter-spacing:-.5px;}
+  .lede{font-size:16.5px;line-height:1.55;color:rgba(20,52,47,.82);margin:0;}
+  .reassure{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px;font-size:14.5px;line-height:1.5;color:var(--teal-ink);box-shadow:var(--shadow);}
+  .reassure b{color:var(--terra);}
+
+  /* BUTTONS */
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;cursor:pointer;
+    font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;padding:16px;border-radius:var(--radius-sm);transition:transform .12s,box-shadow .2s,background .2s;}
+  .btn:active{transform:scale(.985);}
+  .btn.primary{background:var(--amber);color:var(--teal-ink);box-shadow:0 12px 30px rgba(232,160,76,.34);}
+  .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);}
+  .btn.ghost:hover{background:#EAE5DC;}
+  .btn.full{margin-top:auto;}
+
+  /* FLOW */
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+  .back{background:none;border:none;color:var(--teal);font-weight:700;font-size:15px;cursor:pointer;padding:6px 2px;display:none;}
+  .back.show{display:inline-block;}
+  .stepper{display:flex;gap:7px;align-items:center;}
+  .stepper .pip{width:26px;height:5px;border-radius:999px;background:rgba(20,52,47,.16);transition:background .3s;}
+  .stepper .pip.done{background:var(--teal);}
+  .stepper .pip.cur{background:var(--amber);}
+  .q-head{margin:6px 0 22px;}
+  .q-kicker{font-size:13px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+  .q-title{font-family:'Fraunces',serif;font-weight:600;font-size:27px;line-height:1.18;color:var(--teal-ink);margin:0;}
+  .options{display:flex;flex-direction:column;gap:12px;}
+  .opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+    background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-sm);
+    padding:17px 16px;font-family:'Plus Jakarta Sans';font-weight:600;font-size:16px;line-height:1.35;color:var(--teal-ink);
+    box-shadow:0 6px 18px rgba(8,42,38,.05);transition:transform .12s,border-color .15s,background .15s;}
+  .opt:active{transform:scale(.99);}
+  .opt:hover{border-color:var(--teal);}
+  .opt .chev{margin-left:auto;color:var(--teal);font-size:20px;flex:none;}
+  .opt.sel{border-color:var(--amber);background:#FFF9F0;}
+
+  /* RESULTS */
+  .res-head{margin-bottom:6px;}
+  .res-head .what{font-size:13px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--teal);}
+  .res-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:25px;line-height:1.2;color:var(--teal-ink);margin:6px 0 0;}
+  .banner{border-radius:var(--radius-sm);padding:14px 16px;margin:16px 0 8px;font-size:14.5px;line-height:1.5;font-weight:600;}
+  .banner.emergency{background:#FDF0EC;border:1px solid rgba(217,115,90,.4);color:#8A3D22;}
+  .banner.calm{background:#E8F5F0;border:1px solid rgba(27,122,126,.3);color:#0F3A3D;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-top:16px;box-shadow:var(--shadow);}
+  .card .label{display:inline-flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--teal-ink);margin-bottom:4px;}
+  .card .tag{font-size:12px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--teal);border-radius:999px;padding:4px 10px;text-transform:uppercase;}
+  .card.add .tag{background:var(--terra);}
+  .card.check .tag{background:var(--teal);}
+  .card.tell .tag{background:var(--amber);color:var(--teal-ink);}
+  .card .sub{font-size:13.5px;color:rgba(20,52,47,.7);margin:2px 0 14px;}
+  ol.steps,ul.steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;}
+  ol.steps li{display:flex;gap:12px;font-size:15px;line-height:1.45;}
+  ol.steps li .n{flex:none;width:25px;height:25px;border-radius:8px;background:var(--sand-card);border:1px solid var(--line);color:var(--teal-ink);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+  ul.steps li{display:flex;gap:11px;font-size:15px;line-height:1.45;}
+  ul.steps li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-top:7px;}
+  .verify{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.4px;color:#8A3D22;background:rgba(217,115,90,.14);border:1px dashed rgba(217,115,90,.5);border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:middle;}
+  .support{margin-top:10px;font-size:14px;line-height:1.55;color:var(--teal-ink);}
+  .support b{display:block;margin-bottom:6px;}
+  .why{margin-top:18px;}
+  .why summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--teal);list-style:none;padding:10px 0;}
+  .why summary::-webkit-details-marker{display:none;}
+  .why summary::before{content:"❔ ";}
+  .why .rule{background:var(--sand-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px;font-size:13px;line-height:1.6;margin-top:6px;}
+  .why .rule code{font-family:ui-monospace,Menlo,monospace;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--teal-ink);}
+  .footer-links{margin-top:22px;display:flex;gap:16px;justify-content:center;font-size:13px;}
+  .footer-links a{color:var(--teal);text-decoration:none;font-weight:700;}
+  .mini{text-align:center;font-size:11.5px;color:rgba(20,52,47,.5);margin-top:16px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HOME -->
+  <section id="screen-home" class="screen active">
+    <div class="brand"><span class="dot"></span> NextStep</div>
+    <div class="hero">
+      <h1>Something happened online. Let's take the next step together.</h1>
+      <p class="lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.</p>
+      <div class="reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
+      <button class="btn primary" onclick="NextStep.start()">Start — it takes 1 minute</button>
+      <div id="voice-slot"><!-- ElevenLabs "Talk instead of tapping" widget mounts here (deliverable 4) --></div>
+    </div>
+    <div class="footer-links">
+      <a href="rules.html">See all routes</a>
+      <a href="test.html">Live test</a>
+    </div>
+    <p class="mini">Not an emergency service. If you are in danger, call <b>999</b>. Support: SOS <b>1767</b>.</p>
+  </section>
+
+  <!-- FLOW -->
+  <section id="screen-flow" class="screen">
+    <div class="topbar">
+      <button class="back" id="backBtn" onclick="NextStep.back()">← Back</button>
+      <div class="stepper" id="stepper"></div>
+    </div>
+    <div class="q-head">
+      <div class="q-kicker" id="qKicker">Step 1 of 4</div>
+      <h2 class="q-title" id="qTitle"></h2>
+    </div>
+    <div class="options" id="options"></div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="screen-results" class="screen">
+    <div class="topbar">
+      <button class="back show" onclick="NextStep.restart()">← Start over</button>
+      <div class="brand" style="font-size:18px;"><span class="dot"></span> NextStep</div>
+    </div>
+    <div id="results"></div>
+    <div class="footer-links">
+      <a href="rules.html">See all routes</a>
+      <a href="test.html">Live test</a>
+    </div>
+    <p class="mini">Links marked <span class="verify">VERIFY LINK</span> are placeholders to confirm before publishing. Not legal advice.</p>
+  </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
