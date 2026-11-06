@@ -32,7 +32,7 @@ window.NEXTSTEP_I18N = {
       support_bar: "<b>Feeling overwhelmed right now?</b> You can talk to someone any time, Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours.",
       nav_alerts: "Scam alerts", alerts_heading: "Latest scam alerts", alerts_btn: "If it happened to you →",
       home_scam_title: "I'm being scammed", home_scam_sub: "The first-10-minutes plan: bank, police, ScamShield",
-      home_drill_title: "Scam Drill", home_drill_sub: "Practice in 60 seconds",
+      home_drill_title: "Scam quizzes", home_drill_sub: "2 quizzes, win the raffle",
       home_else: "Something else happened", nav_drill: "Scam Drill",
       tab_report: "Report", tab_news: "News", tab_play: "Play & win",
       listen: "Listen to your plan"
@@ -66,7 +66,7 @@ window.NEXTSTEP_I18N = {
       support_bar: "<b>现在感到不知所措吗？</b> 你随时可以找人聊聊——新加坡援人协会 (SOS)：拨打 <b>1767</b> 或发短信 <b>9151 1767</b>，24 小时。",
       nav_alerts: "诈骗警报", alerts_heading: "最新诈骗警报", alerts_btn: "如果你遇到了 →",
       home_scam_title: "我被骗了", home_scam_sub: "最初 10 分钟的步骤：银行、报警、ScamShield",
-      home_drill_title: "诈骗演练", home_drill_sub: "60 秒练习一次",
+      home_drill_title: "诈骗测验", home_drill_sub: "2 个测验，赢取抽奖",
       home_else: "发生了别的事", nav_drill: "诈骗演练",
       tab_report: "举报", tab_news: "新闻", tab_play: "玩游戏赢奖",
       listen: "收听你的计划"
@@ -181,7 +181,7 @@ window.NEXTSTEP_I18N = {
       support_bar: "<b>Rasa terbeban sekarang?</b> Awak boleh berbual dengan seseorang bila-bila masa, Samaritans of Singapore (SOS): hubungi <b>1767</b> atau teks <b>9151 1767</b>, 24 jam.",
       nav_alerts: "Amaran penipuan", alerts_heading: "Amaran penipuan terkini", alerts_btn: "Jika ia berlaku pada awak →",
       home_scam_title: "Saya ditipu", home_scam_sub: "Pelan 10 minit pertama: bank, polis, ScamShield",
-      home_drill_title: "Latihan penipuan", home_drill_sub: "Berlatih dalam 60 saat",
+      home_drill_title: "Kuiz penipuan", home_drill_sub: "2 kuiz, menang cabutan",
       home_else: "Sesuatu yang lain berlaku", nav_drill: "Latihan penipuan",
       tab_report: "Lapor", tab_news: "Berita", tab_play: "Main & menang",
       listen: "Dengar pelan awak"
