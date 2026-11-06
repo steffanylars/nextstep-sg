@@ -123,19 +123,32 @@
   .recap ul{margin:0;padding-left:18px;} .recap li{font-size:13.5px;line-height:1.5;color:rgba(31,36,51,.8);margin-bottom:5px;}
   .support-bar{display:flex;align-items:flex-start;gap:10px;background:#FBEAEA;border:1px solid rgba(200,21,27,.3);border-radius:var(--radius-sm);padding:13px 15px;margin-top:18px;font-size:13.5px;line-height:1.5;color:#8A1114;}
   .support-bar b{color:#8A1114;}
+
+  /* logo + language switcher */
+  .logo-mark{display:inline-block;flex:none;width:25px;height:25px;vertical-align:-6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 3v6c0 4.4-3 8.2-7 9-4-.8-7-4.6-7-9V5l7-3z' fill='%234372D6'/%3E%3Cpath d='M8.3 12.4l2.6 2.6 4.8-5.2' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;}
+  .langbar{position:fixed;top:12px;right:12px;z-index:50;display:flex;gap:3px;padding:4px;background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);}
+  .langbar button{border:none;cursor:pointer;font-family:'Plus Jakarta Sans';font-weight:700;font-size:12px;padding:6px 11px;border-radius:999px;background:transparent;color:var(--teal);transition:all .15s;}
+  .langbar button.active{background:var(--amber);color:#fff;}
+  .lang-note{display:none;font-size:11.5px;color:#8A1114;background:#FBEAEA;border:1px solid rgba(200,21,27,.3);border-radius:8px;padding:7px 10px;margin-bottom:10px;}
 </style>
 </head>
 <body>
+<div class="langbar" id="langbar">
+  <button data-lang="en" class="active">EN</button>
+  <button data-lang="zh">中文</button>
+  <button data-lang="ms">Melayu</button>
+</div>
 <div class="wrap">
+  <div class="lang-note" id="langNote"></div>
 
   <!-- HOME -->
   <section id="screen-home" class="screen active">
-    <div class="brand"><span class="dot"></span> NextStep</div>
+    <div class="brand"><span class="logo-mark"></span> NextStep</div>
     <div class="hero">
-      <h1>Something happened online. Let's take the next step together.</h1>
-      <p class="lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.</p>
-      <div class="reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
-      <button class="btn primary" onclick="NextStep.start()">Start — it takes 1 minute</button>
+      <h1 id="t-h1">Something happened online. Let's take the next step together.</h1>
+      <p class="lede" id="t-lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you — we help you protect yourself, report it the right way, and tell someone who can help.</p>
+      <div class="reassure" id="t-reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
+      <button class="btn primary" id="t-start" onclick="NextStep.start()">Start — it takes 1 minute</button>
       <div id="voice-slot">
         <div id="voice-label" style="display:none;text-align:center;font-size:14px;font-weight:700;color:#1D3A8F;margin:4px 0 2px;">🎙️ Prefer to talk? Tap the mic to speak instead of tapping.</div>
         <div id="voice-hint" style="display:none;text-align:center;font-size:12.5px;color:rgba(31,36,51,.55);margin-top:6px;">Voice coming online — add your ElevenLabs agent id in <code style="font-family:ui-monospace,Menlo,monospace">config.js</code> to enable “Talk instead of tapping”.</div>
@@ -145,7 +158,7 @@
       <a href="rules.html">See all routes</a>
       <a href="test.html">Live test</a>
     </div>
-    <p class="mini">Not an emergency service. If you are in danger, call <b>999</b>. Support: SOS <b>1767</b>.</p>
+    <p class="mini" id="t-mini">Not an emergency service. If you are in danger, call <b>999</b>. Support: SOS <b>1767</b>.</p>
   </section>
 
   <!-- FLOW -->
@@ -164,8 +177,8 @@
   <!-- RESULTS -->
   <section id="screen-results" class="screen">
     <div class="topbar">
-      <button class="back show" onclick="NextStep.restart()">← Start over</button>
-      <div class="brand" style="font-size:18px;"><span class="dot"></span> NextStep</div>
+      <button class="back show" id="t-startover" onclick="NextStep.restart()">← Start over</button>
+      <div class="brand" style="font-size:18px;"><span class="logo-mark" style="width:21px;height:21px;vertical-align:-5px;"></span> NextStep</div>
     </div>
     <div id="results"></div>
     <div class="footer-links">
@@ -176,6 +189,7 @@
   </section>
 
 </div>
+<script src="i18n.js"></script>
 <script src="config.js"></script>
 <script>
   /* Mount the ElevenLabs Conversational AI widget only if an agent id is set.

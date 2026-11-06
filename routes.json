@@ -3,7 +3,7 @@
     "product": "NextStep SG",
     "purpose": "Deterministic guidance for youths in the first 10 minutes after online harm. The engine decides the route from a fixed rule table; no AI judgement.",
     "framework": "Maps to IMDA 'Report Inappropriate Content' + 'Engage & Support' and the Add / Check / Tell framework.",
-    "url_policy": "Every external link is a [VERIFY LINK] placeholder. No URLs are invented. Replace before publishing."
+    "links_checked": "Official Singapore links verified Nov 2026: osc.gov.sg, police.gov.sg, scamshield.gov.sg, she.org.sg. Re-confirm before relying on them."
   },
 
   "questions": [
@@ -14,7 +14,8 @@
         { "value": "intimate_images", "label": "Someone shared or threatened to share intimate photos of me" },
         { "value": "doxxing", "label": "My personal info was posted (doxxing)" },
         { "value": "harassment", "label": "I'm being harassed or bullied" },
-        { "value": "impersonation", "label": "Someone is pretending to be me" }
+        { "value": "impersonation", "label": "Someone is pretending to be me" },
+        { "value": "scam", "label": "I was scammed or someone is trying to scam me" }
       ]
     },
     {
@@ -48,19 +49,19 @@
   ],
 
   "platforms": {
-    "instagram": { "label": "Instagram", "report": "Open the post, profile or message, tap the ••• menu, choose Report, and follow the steps. Pick the reason that fits (nudity, harassment, or pretending to be someone). [VERIFY LINK]" },
-    "tiktok":    { "label": "TikTok", "report": "Press and hold the video or message, or tap Share then Report, and follow the steps. [VERIFY LINK]" },
-    "telegram":  { "label": "Telegram", "report": "Open the chat or channel, tap the name at the top, choose Report, and select the reason. You can also forward abusive content to Telegram's abuse contact. [VERIFY LINK]" },
-    "whatsapp":  { "label": "WhatsApp", "report": "Open the chat, tap the contact name, scroll down and tap Report. You can report and block in the same step. [VERIFY LINK]" },
-    "discord":   { "label": "Discord", "report": "Tap and hold the message, choose Report, or report the user/server. Keep the message link if you can. [VERIFY LINK]" },
-    "other":     { "label": "this platform", "report": "Find the app or site's Report or Safety option (often under the ••• menu or Settings) and report the content. [VERIFY LINK]" }
+    "instagram": { "label": "Instagram", "report": "Open the post, profile or message, tap the ••• menu, choose Report, and pick the reason (nudity, harassment, or pretending to be someone)." },
+    "tiktok":    { "label": "TikTok", "report": "Press and hold the video or message, or tap Share then Report, and follow the steps." },
+    "telegram":  { "label": "Telegram", "report": "Open the chat or channel, tap the name at the top, choose Report, and select the reason." },
+    "whatsapp":  { "label": "WhatsApp", "report": "Open the chat, tap the contact name, scroll down and tap Report (this reports and blocks together)." },
+    "discord":   { "label": "Discord", "report": "Tap and hold the message, choose Report, and keep the message link if you can." },
+    "other":     { "label": "this platform", "report": "Find the app or site's Report or Safety option (often under the ••• menu or Settings) and report the content." }
   },
 
   "support": {
     "label": "You deserve support. These are free and confidential:",
     "lines": [
       "Samaritans of Singapore (SOS): call 1767 or text 9151 1767, 24 hours",
-      "mindline.sg – free mental health support and tools [VERIFY LINK]"
+      "mindline.sg — free mental health support: https://mindline.sg"
     ]
   },
 
@@ -77,8 +78,8 @@
       ],
       "check": [
         "Report it on the platform where it happened (steps below).",
-        "Report to Singapore's Online Safety Commission to ask for the content to be taken down. [VERIFY LINK]",
-        "Specialised help for image-based abuse is available (e.g. SHECARES@SCWO). [VERIFY LINK]"
+        "Report directly to the Online Safety Commission (OSC) to get it taken down — intimate-image abuse can be reported straight away, free: https://www.osc.gov.sg",
+        "For specialised help (counselling, free legal clinic, fast takedowns), contact SHECARES@SCWO: call 8001 01 4616 or WhatsApp 8985 5528 (Mon–Fri 9am–9pm) — https://she.org.sg"
       ],
       "tell": [
         "Talk to someone you trust today. You should not carry this alone."
@@ -97,8 +98,8 @@
       ],
       "check": [
         "Report the post on the platform (steps below) and ask for it to be removed.",
-        "Report to Singapore's Online Safety Commission for help removing personal information. [VERIFY LINK]",
-        "Sharing someone's private info to harass them can be an offence under the Protection from Harassment Act. [VERIFY LINK]"
+        "Report directly to the Online Safety Commission (OSC) — doxxing can be reported straight away, free: https://www.osc.gov.sg",
+        "Posting someone's private info to harass them may be an offence under the Protection from Harassment Act."
       ],
       "tell": [
         "Tell someone you trust so you are not handling this on your own."
@@ -115,9 +116,9 @@
         "Block the person AFTER you have taken screenshots."
       ],
       "check": [
-        "Report the account or messages on the platform (steps below).",
-        "Report to Singapore's Online Safety Commission if the harassment continues. [VERIFY LINK]",
-        "Ongoing harassment may be covered by the Protection from Harassment Act. [VERIFY LINK]"
+        "Report the account or messages on the platform first (steps below).",
+        "If it doesn't stop, you can escalate to the Online Safety Commission (OSC) 24 hours after reporting it to the platform, free: https://www.osc.gov.sg",
+        "Ongoing harassment may be covered by the Protection from Harassment Act."
       ],
       "tell": [
         "Tell someone you trust. Being believed makes a real difference."
@@ -135,10 +136,29 @@
       ],
       "check": [
         "Use the platform's impersonation report to say this account is pretending to be you (steps below). You may be asked for proof of identity.",
-        "Report to Singapore's Online Safety Commission if the fake account stays up. [VERIFY LINK]"
+        "If the fake account stays up, report it to the Online Safety Commission (OSC), free: https://www.osc.gov.sg"
       ],
       "tell": [
         "Let someone you trust know, so they can help and watch for the fake account."
+      ]
+    },
+
+    "scam": {
+      "label": "Scam",
+      "headline": "Let's stop the money and report it. This happens to lots of people.",
+      "add": [
+        "Do NOT send any more money, and stop replying to the person.",
+        "Screenshot the chats, the account/number, and any transfer details.",
+        "If you shared a password or OTP, change that password now and tell your bank.",
+        "Don't delete the conversation — it's evidence."
+      ],
+      "check": [
+        "Report and check suspicious numbers, links or messages with ScamShield — call the 24/7 helpline 1799 or use the app: https://www.scamshield.gov.sg",
+        "If you lost money or gave away sensitive details, make a Police report (not just a ScamShield report): https://www.police.gov.sg/e-services/lodge-police-report",
+        "You can report the scam account on the platform too (steps below)."
+      ],
+      "tell": [
+        "Tell someone you trust — scams rely on you feeling too embarrassed to speak up."
       ]
     }
   },
@@ -146,14 +166,14 @@
   "modifiers": {
     "danger_now_yes": {
       "banner": "emergency",
-      "banner_text": "If you are in immediate danger or someone is with you and you feel unsafe, call the Police at 999 now.",
+      "banner_text": "If you are in immediate danger, or someone is threatening you (e.g. 'pay or I post your photos'), call the Police at 999 now.",
       "add_first": "If you are in immediate danger, call Police 999 first.",
-      "check_add": "Because this is happening now, make a Police report. Call 999 for emergencies, or file a non-emergency report with the Police. [VERIFY LINK]"
+      "check_add": "Because this is happening now, call the Police at 999 for emergencies, or make a non-emergency report online: https://www.police.gov.sg/e-services/lodge-police-report"
     },
     "danger_now_no": {
       "banner": "calm",
       "banner_text": "You have time. Let's do this step by step.",
-      "check_add": "If you ever feel unsafe, you can make a Police report. Call 999 in an emergency, or file a non-emergency report. [VERIFY LINK]"
+      "check_add": "If you ever feel unsafe, you can call 999, or make a non-emergency Police report online: https://www.police.gov.sg/e-services/lodge-police-report"
     },
     "under18_yes": {
       "tell_first": "You're under 18, so telling a trusted adult now is the most important step: a parent, relative, teacher, school counsellor, or coach.",
