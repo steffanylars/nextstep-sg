@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title>NextStep SG — Spot-the-scam quiz</title>
+<title>NextStep SG — Scam quizzes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -24,6 +24,15 @@
   .read .d{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--terra);}
   .read .t{font-size:14px;font-weight:700;color:var(--teal-ink);margin:3px 0;line-height:1.35;}
   .read .s{font-size:11.5px;font-weight:700;color:var(--teal);}
+  .raffle{border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13.5px;font-weight:700;line-height:1.45;}
+  .raffle.win{background:#FFF3D6;border:1px solid #F0D27A;color:#8A5A00;}
+  .raffle.todo{background:var(--sand-card);border:1px solid var(--line);color:var(--teal-ink);}
+  .qcard{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:0 8px 22px rgba(21,36,74,.06);transition:transform .12s,border-color .15s;}
+  .qcard:active{transform:scale(.99);} .qcard:hover{border-color:var(--teal);}
+  .qcard .qt{font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--teal-ink);}
+  .qcard .qd{font-size:13.5px;color:rgba(31,36,51,.75);margin-top:4px;line-height:1.4;}
+  .qcard .pass{display:inline-block;margin-top:9px;font-size:12px;font-weight:800;color:var(--ok);}
+  .qcard .todo{display:inline-block;margin-top:9px;font-size:12px;font-weight:800;color:var(--teal);}
   .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);}
   .prog{display:flex;gap:5px;margin-bottom:14px;}
   .prog .p{flex:1;height:5px;border-radius:999px;background:rgba(31,36,51,.14);}
@@ -41,7 +50,6 @@
   .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);box-shadow:none;margin-top:10px;}
   .big{font-family:'Fraunces',serif;font-weight:700;font-size:48px;line-height:1;color:var(--teal-ink);text-align:center;}
   .sub{text-align:center;font-size:14px;color:rgba(31,36,51,.7);margin:6px 0 2px;}
-  .rifa-note{text-align:center;font-size:13.5px;font-weight:700;color:#8A5A00;background:#FFF3D6;border:1px solid #F0D27A;border-radius:10px;padding:9px 12px;margin:16px 0;}
   .links{margin-top:18px;display:flex;gap:16px;justify-content:center;font-size:13px;flex-wrap:wrap;}
   .links a{color:var(--teal);font-weight:700;text-decoration:none;}
   .ic{width:1.05em;height:1.05em;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -56,14 +64,14 @@
     <a href="alerts.html" class="tab">News</a>
     <a href="test.html" class="tab active">Play &amp; win</a>
   </nav>
-  <h1>Spot-the-scam quiz</h1>
-  <p class="lede">10 quick questions. Learn to tell a real government help page from a fake, and spot this month's scams. Finish to enter the raffle.</p>
+  <h1>Scam quizzes</h1>
+  <p class="lede">Two quizzes. Ace both with a perfect score to enter this week's raffle.</p>
 
   <div class="sec-h">This week's reads (official SPF)</div>
   <div class="reads" id="reads"></div>
 
-  <div class="sec-h">The quiz</div>
-  <div class="card" id="quizCard"></div>
+  <div id="hub"></div>
+  <div class="card" id="quizCard" style="display:none"></div>
 
   <div class="links">
     <a href="test.html">Try the Scam Drill</a>
@@ -73,8 +81,6 @@
 </div>
 
 <script>
-var VOL=''; // unused placeholder
-// 3 featured recent SPF advisories (real URLs).
 var READS=[
   {d:"21 Oct 2026", t:"Hijacked WhatsApp accounts of friends asking for loans", u:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261021_police_advisory_on_social_media_impersonation_scams"},
   {d:"23 Oct 2026", t:"Fake Facebook ads with AI-generated police offering “scam recovery”", u:"https://www.police.gov.sg/Media-Hub/News/2026/10/20261023_police_advisory_on_fake_advertisements_of_ai_generated_police_officer"},
@@ -82,8 +88,8 @@ var READS=[
 ];
 var SPF_WA=READS[0].u, SPF_REC=READS[1].u, SPF_ADS=READS[2].u;
 
-// Questions. Each option: {t, ok, why}. One ok per question.
-var QUESTIONS=[
+// QUIZ 1: official sites (real vs look-alike)
+var SITES=[
   {q:"You were scammed and want to report it. Which is the REAL official site?",
    o:[{t:"www.scamshield.gov.sg",ok:true,why:"Correct. Official Singapore sites end in <code>.gov.sg</code>."},
       {t:"scamshield-sg.com",why:"Fake. It is not a <code>.gov.sg</code> address."},
@@ -99,7 +105,11 @@ var QUESTIONS=[
   {q:"You want free, confidential emotional support. Which is REAL?",
    o:[{t:"mindline.sg",ok:true,why:"Correct. mindline.sg is the official support site."},
       {t:"mind-line-sg.com",why:"Fake. Extra hyphens and <code>.com</code> are a look-alike."},
-      {t:"mindline.sg.help.co",why:"Fake. The real site is just <code>mindline.sg</code>."}]},
+      {t:"mindline.sg.help.co",why:"Fake. The real site is just <code>mindline.sg</code>."}]}
+];
+
+// QUIZ 2: this month's scams (from the SPF advisories above)
+var SCAMS=[
   {q:"A friend messages on WhatsApp asking to urgently PayNow them money. Safest move?",
    o:[{t:"Call them on a number you already have to check first, their account may be hijacked.",ok:true,why:"Correct. Hijacked-account loan scams are common right now.",src:SPF_WA},
       {t:"Just send it, they are your friend.",why:"Risky. Scammers rely on this.",src:SPF_WA},
@@ -126,7 +136,16 @@ var QUESTIONS=[
       {t:"None",why:"No, this is an active scam.",src:SPF_WA}]}
 ];
 
-var step=0, correct=0, answered=false;
+var QUIZZES={
+  sites:{title:"Spot the real site", desc:"Tell the real .gov.sg page from a look-alike.", qs:SITES},
+  scams:{title:"This month's scams", desc:"Questions from this month's Police alerts.", qs:SCAMS}
+};
+
+var curKey=null, step=0, correct=0, answered=false;
+
+function esc(s){return String(s);}
+function passState(){try{return JSON.parse(localStorage.getItem("nextstep_quiz_pass")||"{}");}catch(e){return {};}}
+function setPass(k){var s=passState();s[k]=true;localStorage.setItem("nextstep_quiz_pass",JSON.stringify(s));}
 
 function renderReads(){
   document.getElementById("reads").innerHTML=READS.map(function(r){
@@ -135,61 +154,74 @@ function renderReads(){
   }).join("");
 }
 
+function renderHub(){
+  document.getElementById("quizCard").style.display="none";
+  var hub=document.getElementById("hub"); hub.style.display="block";
+  var ps=passState();
+  var both=ps.sites && ps.scams;
+  var raffle = both
+    ? '<div class="raffle win">You aced both quizzes, you\'re in this week\'s raffle!</div>'
+    : '<div class="raffle todo">Ace BOTH quizzes with a perfect score to enter the raffle.</div>';
+  var cards="";
+  ["sites","scams"].forEach(function(k){
+    var Q=QUIZZES[k], done=ps[k];
+    cards+='<button class="qcard" onclick="startQuiz(\''+k+'\')">'+
+      '<div class="qt">'+Q.title+'</div>'+
+      '<div class="qd">'+Q.desc+' · '+Q.qs.length+' questions</div>'+
+      (done?'<span class="pass">✓ Passed (perfect)</span>':'<span class="todo">Start →</span>')+
+      '</button>';
+  });
+  hub.innerHTML=raffle+cards;
+}
+
+function startQuiz(k){ curKey=k; step=0; correct=0; document.getElementById("hub").style.display="none"; document.getElementById("quizCard").style.display="block"; renderQ(); window.scrollTo(0,0); }
+
 function renderQ(){
-  var Q=QUESTIONS[step], n=QUESTIONS.length;
+  var qs=QUIZZES[curKey].qs, Q=qs[step], n=qs.length;
   answered=false;
   var pips=""; for(var i=0;i<n;i++) pips+='<div class="p'+(i<step?" done":i===step?" cur":"")+'"></div>';
-  var opts=Q.o.map(function(o,idx){
-    return '<button class="opt" id="o'+idx+'" onclick="pick('+idx+')">'+o.t+'</button>';
-  }).join("");
+  var opts=Q.o.map(function(o,idx){ return '<button class="opt" id="o'+idx+'" onclick="pick('+idx+')">'+o.t+'</button>'; }).join("");
   document.getElementById("quizCard").innerHTML=
     '<div class="prog">'+pips+'</div>'+
-    '<div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:8px;">Question '+(step+1)+' of '+n+'</div>'+
+    '<div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:8px;">'+QUIZZES[curKey].title+' · Q'+(step+1)+' of '+n+'</div>'+
     '<p class="q">'+Q.q+'</p>'+opts+'<div id="fb"></div>';
 }
 
 function pick(idx){
   if(answered) return; answered=true;
-  var Q=QUESTIONS[step];
-  for(var i=0;i<Q.o.length;i++){
-    var b=document.getElementById("o"+i); b.disabled=true;
-    if(Q.o[i].ok) b.className="opt correct";
-  }
+  var qs=QUIZZES[curKey].qs, Q=qs[step];
+  for(var i=0;i<Q.o.length;i++){ var b=document.getElementById("o"+i); b.disabled=true; if(Q.o[i].ok) b.className="opt correct"; }
   var chosen=Q.o[idx];
   if(!chosen.ok) document.getElementById("o"+idx).className="opt wrong";
   if(chosen.ok) correct++;
   var src=chosen.src?('<a class="src" href="'+chosen.src+'" target="_blank" rel="noopener">Source: SPF ↗</a>'):"";
   document.getElementById("fb").innerHTML=
     '<div class="why '+(chosen.ok?"g":"b")+'">'+(chosen.ok?"✓ ":"✗ ")+chosen.why+'<br>'+src+'</div>'+
-    '<button class="btn" onclick="nextQ()">'+(step<QUESTIONS.length-1?"Next question":"See my score")+'</button>';
+    '<button class="btn" onclick="nextQ()">'+(step<qs.length-1?"Next question":"See my score")+'</button>';
 }
 
-function nextQ(){
-  if(step<QUESTIONS.length-1){ step++; renderQ(); window.scrollTo(0,0); }
-  else finish();
-}
+function nextQ(){ var qs=QUIZZES[curKey].qs; if(step<qs.length-1){ step++; renderQ(); window.scrollTo(0,0); } else finish(); }
 
 function finish(){
-  var n=QUESTIONS.length;
-  var perfect = correct===n;
-  var line = perfect?"Scam-proof! Perfect score.":correct>=7?"Strong, you can spot most scams.":"Good start, now you know the tricks.";
-  try{var s=JSON.parse(localStorage.getItem("nextstep_quiz")||"[]");s.push(correct);localStorage.setItem("nextstep_quiz",JSON.stringify(s));}catch(e){}
-  var rifa = perfect
-    ? '<div class="rifa-note">You scored '+n+'/'+n+' — you\'re in this week\'s raffle!</div>'
-    : '<div class="rifa-note" style="background:#EEF2FB;border-color:'+'var(--line)'+';color:var(--teal-ink)">Only a perfect '+n+'/'+n+' enters the raffle. You got '+correct+'/'+n+' — play again to win.</div>';
-  var primary = perfect
-    ? '<button class="btn" onclick="location.href=\'index.html?start=scam\'">If a scam happens for real, open NextStep</button>'+
-      '<button class="btn ghost" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Play again</button>'
-    : '<button class="btn" onclick="step=0;correct=0;renderQ();window.scrollTo(0,0)">Try again for '+n+'/'+n+'</button>'+
-      '<button class="btn ghost" onclick="location.href=\'index.html?start=scam\'">Open NextStep</button>';
+  var qs=QUIZZES[curKey].qs, n=qs.length, perfect=correct===n;
+  if(perfect) setPass(curKey);
+  var ps=passState(), both=ps.sites&&ps.scams;
+  var line = perfect?"Perfect, quiz passed!":"Get every question right to pass this quiz.";
+  var note = perfect
+    ? (both?'<div class="raffle win" style="margin-top:14px">Both quizzes aced, you\'re in the raffle!</div>'
+            :'<div class="raffle todo" style="margin-top:14px">One done. Ace the other quiz too to enter the raffle.</div>')
+    : '<div class="raffle todo" style="margin-top:14px">You got '+correct+'/'+n+'. A perfect score is needed to pass.</div>';
+  var retry = perfect
+    ? '<button class="btn" onclick="renderHub();window.scrollTo(0,0)">Back to quizzes</button>'
+    : '<button class="btn" onclick="startQuiz(curKey);window.scrollTo(0,0)">Try again for '+n+'/'+n+'</button>'+
+      '<button class="btn ghost" onclick="renderHub();window.scrollTo(0,0)">Back to quizzes</button>';
   document.getElementById("quizCard").innerHTML=
-    '<div class="big">'+correct+'/'+n+'</div>'+
-    '<div class="sub">'+line+'</div>'+ rifa + primary;
+    '<div class="big">'+correct+'/'+n+'</div><div class="sub">'+line+'</div>'+note+retry;
   window.scrollTo(0,0);
 }
 
 renderReads();
-renderQ();
+renderHub();
 </script>
 </body>
 </html>
