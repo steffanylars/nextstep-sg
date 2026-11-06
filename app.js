@@ -144,7 +144,18 @@
     show("results");
   }
 
-  /* ---------- RESULTS ---------- */
+  /* ---------- RESULTS (one step at a time + emotional support) ---------- */
+
+  // Gentle affirmations shown under each "right now" action (deterministic by index).
+  var AFFIRMATIONS = [
+    "Breathe. You're already doing the right thing. 💛",
+    "One thing at a time. You've got this.",
+    "This isn't your fault. Keep going.",
+    "You're being brave right now. Nearly there.",
+    "Take your time. There's no rush."
+  ];
+
+  var resState = null; // { route, phase: 'add'|'next', i }
 
   function stepsOL(items) {
     return '<ol class="steps">' + items.map(function (t, i) {
@@ -157,45 +168,104 @@
     }).join("") + "</ul>";
   }
 
-  function renderResults(route) {
-    var el = document.getElementById("results");
-    var a = route.answers;
+  function supportBar() {
+    return '<div class="support-bar"><span>💛</span><span><b>Feeling overwhelmed right now?</b> You can talk to someone any time — ' +
+      'Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours. You don\'t have to be in crisis to call.</span></div>';
+  }
 
-    var supportHtml =
-      '<div class="support"><b>' + escapeHtml(route.support.label) + "</b>" +
-      route.support.lines.map(function (l) { return withVerify(l); }).join("<br>") +
-      "</div>";
+  function headBlock(route) {
+    return '<div class="res-head"><span class="what">' + escapeHtml(route.harm.label) + "</span>" +
+      "<h2>" + escapeHtml(route.headline) + "</h2></div>" +
+      '<div class="reassure-line">' + withVerify(route.banner.text) +
+      " <b>This isn't your fault, and you're not alone.</b></div>";
+  }
+
+  function renderResults(route) {
+    resState = { route: route, phase: "add", i: 0 };
+    drawResults();
+  }
+
+  function drawResults() {
+    if (resState.phase === "add") drawAdd();
+    else drawNext();
+    window.scrollTo(0, 0);
+  }
+
+  // PHASE 1 — urgent "protect now" actions, one per screen, no wall of text.
+  function drawAdd() {
+    var route = resState.route, add = route.add, i = resState.i, total = add.length;
+
+    var pips = "";
+    for (var k = 0; k < total; k++) {
+      pips += '<div class="pip' + (k < i ? " done" : k === i ? " cur" : "") + '"></div>';
+    }
+
+    var isLast = i === total - 1;
+    var nextLabel = isLast ? "I've done this — what's next →" : "Done — next step ✓";
+
+    document.getElementById("results").innerHTML =
+      headBlock(route) +
+      '<div class="now-kicker">Right now · step ' + (i + 1) + " of " + total + "</div>" +
+      '<div class="step-progress">' + pips + "</div>" +
+      '<div class="step-big"><span class="num">' + (i + 1) + "</span>" +
+      '<p class="txt">' + withVerify(add[i]) + "</p>" +
+      '<p class="affirm">' + AFFIRMATIONS[i % AFFIRMATIONS.length] + "</p></div>" +
+      '<div class="btns-row">' +
+      (i > 0 ? '<button class="btn ghost" onclick="NextStep._addBack()">← Back</button>' : "") +
+      '<button class="btn primary" onclick="NextStep._addNext()">' + nextLabel + "</button></div>" +
+      '<button class="seeall" onclick="NextStep._seeAll()">Show me everything at once instead</button>' +
+      supportBar();
+  }
+
+  function addNext() {
+    if (resState.i < resState.route.add.length - 1) { resState.i++; drawAdd(); window.scrollTo(0, 0); }
+    else { resState.phase = "next"; drawResults(); }
+  }
+  function addBack() {
+    if (resState.i > 0) { resState.i--; drawAdd(); window.scrollTo(0, 0); }
+  }
+  function seeAll() { resState.phase = "next"; resState.showAllAdd = true; drawResults(); }
+
+  // PHASE 2 — calmer "next" screen: what you did, get a human, report when ready.
+  function drawNext() {
+    var route = resState.route, a = route.answers;
+
+    var recap =
+      '<div class="recap"><div class="rc-h">✓ You\'ve protected yourself</div><ul>' +
+      route.add.map(function (t) { return "<li>" + withVerify(t) + "</li>"; }).join("") +
+      "</ul></div>";
 
     var trustedBtn = route.showTrustedAdult
-      ? '<button class="btn primary" style="margin-top:14px" onclick="NextStep.tellAdult()">📨 Send to a trusted adult</button>'
+      ? '<button class="btn primary" style="margin-top:4px" onclick="NextStep.tellAdult()">📨 Send to a trusted adult</button>'
       : "";
+
+    var tellCard =
+      '<div class="card tell"><div class="label"><span class="tag">Tell</span> Get a human on your side</div>' +
+      '<div class="sub">The most important step. You should not do this alone.</div>' +
+      stepsUL(route.tell) + trustedBtn +
+      '<div class="support">' +
+      route.support.lines.map(function (l) { return withVerify(l); }).join("<br>") + "</div></div>";
+
+    var checkCard =
+      '<div class="card check"><div class="label"><span class="tag">Check</span> Report it — when you\'re ready</div>' +
+      '<div class="sub">No rush. You can do this later today. Confirm each link before relying on it.</div>' +
+      "<details" + '><summary style="cursor:pointer;font-weight:700;color:#1B7A7E;padding:6px 0;">Show the report steps</summary>' +
+      stepsOL(route.check) + "</details></div>";
 
     var why =
       '<details class="why"><summary>Why this route?</summary>' +
-      '<div class="rule">The engine matched your answers against the rule table — no AI decided this:<br><br>' +
+      '<div class="rule">The engine matched your answers against the rule table — no AI decided this, and nothing was sent anywhere:<br><br>' +
       "What: <code>" + escapeHtml(a.harm) + "</code><br>" +
       "Danger now: <code>" + escapeHtml(a.danger_now) + "</code><br>" +
       "Under 18: <code>" + escapeHtml(a.under18) + "</code><br>" +
       "Platform: <code>" + escapeHtml(a.platform) + "</code><br><br>" +
       "Matched rule: <code>" + escapeHtml(route.ruleId) + "</code>" +
-      '</div></details>';
+      "</div></details>";
 
-    el.innerHTML =
-      '<div class="res-head"><span class="what">' + escapeHtml(route.harm.label) + "</span>" +
-      "<h2>" + escapeHtml(route.headline) + "</h2></div>" +
-
-      '<div class="banner ' + route.banner.kind + '">' + withVerify(route.banner.text) + "</div>" +
-
-      '<div class="card add"><div class="label"><span class="tag">Add</span> Protect yourself now</div>' +
-      '<div class="sub">Keep the evidence and lower the pressure.</div>' + stepsOL(route.add) + "</div>" +
-
-      '<div class="card check"><div class="label"><span class="tag">Check</span> Report it the right way</div>' +
-      '<div class="sub">Official channels. Confirm each link before you rely on it.</div>' + stepsOL(route.check) + "</div>" +
-
-      '<div class="card tell"><div class="label"><span class="tag">Tell</span> Get a human on your side</div>' +
-      '<div class="sub">You should not do this alone.</div>' + stepsUL(route.tell) + trustedBtn + supportHtml + "</div>" +
-
-      why;
+    document.getElementById("results").innerHTML =
+      headBlock(route) +
+      '<div class="reassure-line" style="background:#FFF9F0;border-color:rgba(232,160,76,.4)"><b>That was the hard part — well done.</b> The urgent steps are behind you. Now, the most important thing is to get a real person beside you.</div>' +
+      recap + tellCard + checkCard + supportBar() + why;
   }
 
   /* ---------- Trusted adult share (no image, neutral message) ---------- */
@@ -225,6 +295,7 @@
   // Public API
   window.NextStep = {
     start: start, back: back, restart: restart, tellAdult: tellAdult,
+    _addNext: addNext, _addBack: addBack, _seeAll: seeAll, // one-step results
     computeRoute: computeRoute // exposed for rules.html / tests
   };
 
