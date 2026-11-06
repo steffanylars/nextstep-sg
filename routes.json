@@ -148,14 +148,16 @@
       "headline": "Let's stop the money and report it. This happens to lots of people.",
       "add": [
         "Do NOT send any more money, and stop replying to the person.",
-        "Screenshot the chats, the account/number, and any transfer details.",
-        "If you shared a password or OTP, change that password now and tell your bank.",
+        "Contact your bank immediately to block the transaction and freeze your card if money was sent or card details were shared.",
+        "Screenshot the chats, the account or number, and any transfer details.",
+        "If you shared a password or OTP, change it now.",
         "Don't delete the conversation — it's evidence."
       ],
       "check": [
-        "Report and check suspicious numbers, links or messages with ScamShield — call the 24/7 helpline 1799 or use the app: https://www.scamshield.gov.sg",
-        "If you lost money or gave away sensitive details, make a Police report (not just a ScamShield report): https://www.police.gov.sg/e-services/lodge-police-report",
-        "You can report the scam account on the platform too (steps below)."
+        "Report the scam account on the platform (steps below).",
+        "Lodge a Police report — this matters even if you report elsewhere: https://www.police.gov.sg/e-services/lodge-police-report",
+        "Call the 24/7 ScamShield Helpline at 1799 to check and report the scam: https://www.scamshield.gov.sg",
+        "Never pay anyone who promises to 'recover' your lost money. The Police do not offer paid recovery services — those are scams too."
       ],
       "tell": [
         "Tell someone you trust — scams rely on you feeling too embarrassed to speak up."

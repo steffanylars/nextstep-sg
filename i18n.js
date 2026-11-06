@@ -29,7 +29,8 @@ window.NEXTSTEP_I18N = {
       why_intro: "The engine matched your answers against the rule table — no AI decided this, and nothing was sent anywhere:",
       why_what: "What", why_danger: "Danger now", why_under18: "Under 18", why_platform: "Platform", why_matched: "Matched rule",
       tell_btn: "📨 Send to a trusted adult",
-      support_bar: "<b>Feeling overwhelmed right now?</b> You can talk to someone any time — Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours."
+      support_bar: "<b>Feeling overwhelmed right now?</b> You can talk to someone any time — Samaritans of Singapore (SOS): call <b>1767</b> or text <b>9151 1767</b>, 24 hours.",
+      nav_alerts: "Scam alerts", alerts_heading: "Latest scam alerts", alerts_btn: "If it happened to you →"
     }
   },
 
@@ -57,7 +58,8 @@ window.NEXTSTEP_I18N = {
       why_intro: "系统把你的答案对照规则表——不是 AI 决定的，也没有把任何资料发送出去：",
       why_what: "类型", why_danger: "是否有危险", why_under18: "未满 18 岁", why_platform: "平台", why_matched: "匹配的规则",
       tell_btn: "📨 发送给可信任的大人",
-      support_bar: "<b>现在感到不知所措吗？</b> 你随时可以找人聊聊——新加坡援人协会 (SOS)：拨打 <b>1767</b> 或发短信 <b>9151 1767</b>，24 小时。"
+      support_bar: "<b>现在感到不知所措吗？</b> 你随时可以找人聊聊——新加坡援人协会 (SOS)：拨打 <b>1767</b> 或发短信 <b>9151 1767</b>，24 小时。",
+      nav_alerts: "诈骗警报", alerts_heading: "最新诈骗警报", alerts_btn: "如果你遇到了 →"
     },
     content: {
       questions: [
@@ -117,11 +119,15 @@ window.NEXTSTEP_I18N = {
           "如果假账号还在，向网络安全委员会 (OSC) 举报，免费：https://www.osc.gov.sg" ],
           tell: [ "让一个你信任的人知道，帮你留意那个假账号。" ] },
         scam: { label: "诈骗", headline: "我们来止住损失并举报。很多人都遇过这种事。", add: [
-          "不要再转账，也别再回复对方。", "把聊天、账号／号码和任何转账细节截图。",
-          "如果你透露了密码或一次性验证码 (OTP)，现在就改密码并通知银行。", "别删除对话——那是证据。" ],
-          check: [ "用 ScamShield 举报并查证可疑号码、链接或讯息——拨打 24 小时热线 1799 或用应用：https://www.scamshield.gov.sg",
-          "如果你损失了钱或泄露了敏感资料，请报警（不只是 ScamShield 举报）：https://www.police.gov.sg/e-services/lodge-police-report",
-          "你也可以在平台上举报诈骗账号（步骤见下）。" ],
+          "不要再转账，也别再回复对方。",
+          "如果已转账或泄露了卡资料，立刻联系银行冻结交易和银行卡。",
+          "把聊天、账号／号码和任何转账细节截图。",
+          "如果你透露了密码或一次性验证码 (OTP)，现在就改掉。",
+          "别删除对话——那是证据。" ],
+          check: [ "在平台上举报诈骗账号（步骤见下）。",
+          "报警——即使你也在别处举报，这一步也很重要：https://www.police.gov.sg/e-services/lodge-police-report",
+          "拨打 24 小时 ScamShield 热线 1799 查证并举报诈骗：https://www.scamshield.gov.sg",
+          "绝不要付钱给任何声称能「帮你追回损失」的人。警方不提供收费追款服务，这些也是诈骗。" ],
           tell: [ "告诉一个你信任的人——骗子就靠你太尴尬而不敢说出口。" ] }
       },
       modifiers: {
@@ -162,7 +168,8 @@ window.NEXTSTEP_I18N = {
       why_intro: "Enjin memadankan jawapan awak dengan jadual peraturan — bukan AI yang putuskan, dan tiada apa-apa dihantar ke mana-mana:",
       why_what: "Jenis", why_danger: "Bahaya sekarang", why_under18: "Bawah 18", why_platform: "Platform", why_matched: "Peraturan dipadankan",
       tell_btn: "📨 Hantar kepada orang dewasa dipercayai",
-      support_bar: "<b>Rasa terbeban sekarang?</b> Awak boleh berbual dengan seseorang bila-bila masa — Samaritans of Singapore (SOS): hubungi <b>1767</b> atau teks <b>9151 1767</b>, 24 jam."
+      support_bar: "<b>Rasa terbeban sekarang?</b> Awak boleh berbual dengan seseorang bila-bila masa — Samaritans of Singapore (SOS): hubungi <b>1767</b> atau teks <b>9151 1767</b>, 24 jam.",
+      nav_alerts: "Amaran penipuan", alerts_heading: "Amaran penipuan terkini", alerts_btn: "Jika ia berlaku pada awak →"
     },
     content: {
       questions: [
@@ -222,11 +229,15 @@ window.NEXTSTEP_I18N = {
           "Jika akaun palsu masih ada, laporkan kepada Online Safety Commission (OSC), percuma: https://www.osc.gov.sg" ],
           tell: [ "Beritahu seseorang yang awak percaya supaya mereka boleh bantu perhati akaun palsu itu." ] },
         scam: { label: "Penipuan", headline: "Mari hentikan wang dan laporkannya. Ramai orang mengalaminya.", add: [
-          "Jangan hantar wang lagi, dan berhenti membalas orang itu.", "Tangkap skrin sembang, akaun/nombor, dan butiran pindahan.",
-          "Jika awak kongsi kata laluan atau OTP, tukar kata laluan itu sekarang dan beritahu bank.", "Jangan padam perbualan — ia bukti." ],
-          check: [ "Laporkan dan semak nombor, pautan atau mesej mencurigakan dengan ScamShield — hubungi talian 24 jam 1799 atau guna aplikasi: https://www.scamshield.gov.sg",
-          "Jika awak kehilangan wang atau beri maklumat sensitif, buat laporan Polis (bukan sekadar laporan ScamShield): https://www.police.gov.sg/e-services/lodge-police-report",
-          "Awak juga boleh laporkan akaun penipu di platform (langkah di bawah)." ],
+          "Jangan hantar wang lagi, dan berhenti membalas orang itu.",
+          "Hubungi bank awak segera untuk sekat transaksi dan bekukan kad jika wang dihantar atau butiran kad dikongsi.",
+          "Tangkap skrin sembang, akaun atau nombor, dan butiran pindahan.",
+          "Jika awak kongsi kata laluan atau OTP, tukar sekarang.",
+          "Jangan padam perbualan — ia bukti." ],
+          check: [ "Laporkan akaun penipu di platform (langkah di bawah).",
+          "Buat laporan Polis — ini penting walaupun awak lapor di tempat lain: https://www.police.gov.sg/e-services/lodge-police-report",
+          "Hubungi Talian ScamShield 24 jam di 1799 untuk semak dan laporkan penipuan: https://www.scamshield.gov.sg",
+          "Jangan sekali-kali bayar sesiapa yang janji 'memulihkan' wang awak. Polis tidak menawarkan perkhidmatan pemulihan berbayar — itu juga penipuan." ],
           tell: [ "Beritahu seseorang yang awak percaya — penipuan bergantung pada awak rasa malu untuk bersuara." ] }
       },
       modifiers: {

@@ -72,8 +72,11 @@
     set("t-startover", ui("start_over"));
     set("backBtn", ui("back"));
     var vl = byId("voice-label"); if (vl) vl.textContent = ui("voice_label");
-    var links = document.querySelectorAll(".footer-links a");
-    for (var i = 0; i < links.length; i++) links[i].textContent = (i % 2 === 0) ? ui("see_routes") : ui("live_test");
+    var tagged = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < tagged.length; i++) tagged[i].textContent = ui(tagged[i].getAttribute("data-i18n"));
+    var upd = byId("alerts-upd"); if (upd && window.NEXTSTEP_ALERTS) upd.textContent = window.NEXTSTEP_ALERTS.updated;
+    var ha = byId("home-alerts");
+    if (ha && window.renderAlertCards) window.renderAlertCards(ha, { max: 6, btnHref: "#", btnOnclick: "NextStep.startWith('scam');return false;", btnLabel: ui("alerts_btn") });
     var note = byId("langNote");
     if (note) { var n = (I18N[LANG] && I18N[LANG].note) || ""; note.textContent = n; note.style.display = n ? "block" : "none"; }
     var lb = byId("langbar");
@@ -152,6 +155,17 @@
   }
 
   function restart() { show("home"); }
+
+  // Jump straight into a known route (e.g. from a scam alert card).
+  function startWith(harm) {
+    if (!RULES) { load().then(function () { setLang(LANG); startWith(harm); }); return; }
+    if (!RULES.harms[harm]) { start(); return; }
+    answers = { harm: harm };
+    step = 1; // Q1 (harm) is already answered.
+    startTime = Date.now();
+    show("flow");
+    renderQuestion();
+  }
 
   /* ---------- ENGINE: answers -> route (pure lookup) ---------- */
 
@@ -349,7 +363,7 @@
 
   // Public API
   window.NextStep = {
-    start: start, back: back, restart: restart, tellAdult: tellAdult,
+    start: start, startWith: startWith, back: back, restart: restart, tellAdult: tellAdult,
     setLang: setLang,
     _addNext: addNext, _addBack: addBack, _seeAll: seeAll, // one-step results
     computeRoute: computeRoute // exposed for rules.html / tests
@@ -365,5 +379,11 @@
   }
 
   // Preload the rule table, then apply the saved/default language.
-  load().then(function () { setLang(LANG); });
+  load().then(function () {
+    setLang(LANG);
+    try {
+      var s = new URLSearchParams(location.search).get("start");
+      if (s && RULES && RULES.harms[s]) startWith(s);
+    } catch (e) {}
+  });
 })();
