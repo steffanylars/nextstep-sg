@@ -7,5 +7,5 @@
  * (Create the agent in the ElevenLabs dashboard — see AGENT_PROMPT.md.)
  */
 window.NEXTSTEP_CONFIG = {
-  ELEVENLABS_AGENT_ID: "" // e.g. "agent_xxxxxxxxxxxxxxxxxxxxxxxx"
+  ELEVENLABS_AGENT_ID: "agent_0401m6r1j76we41vvrjmwrnt2x0e" // public client id, safe to commit
 };
