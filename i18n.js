@@ -34,7 +34,8 @@ window.NEXTSTEP_I18N = {
       home_scam_title: "I'm being scammed", home_scam_sub: "The first-10-minutes plan: bank, police, ScamShield",
       home_drill_title: "Scam Drill", home_drill_sub: "Practice in 60 seconds",
       home_else: "Something else happened", nav_drill: "Scam Drill",
-      tab_report: "Report", tab_news: "News", tab_play: "Play & win"
+      tab_report: "Report", tab_news: "News", tab_play: "Play & win",
+      listen: "Listen to your plan"
     }
   },
 
@@ -67,7 +68,8 @@ window.NEXTSTEP_I18N = {
       home_scam_title: "我被骗了", home_scam_sub: "最初 10 分钟的步骤：银行、报警、ScamShield",
       home_drill_title: "诈骗演练", home_drill_sub: "60 秒练习一次",
       home_else: "发生了别的事", nav_drill: "诈骗演练",
-      tab_report: "举报", tab_news: "新闻", tab_play: "玩游戏赢奖"
+      tab_report: "举报", tab_news: "新闻", tab_play: "玩游戏赢奖",
+      listen: "收听你的计划"
     },
     content: {
       questions: [
@@ -181,7 +183,8 @@ window.NEXTSTEP_I18N = {
       home_scam_title: "Saya ditipu", home_scam_sub: "Pelan 10 minit pertama: bank, polis, ScamShield",
       home_drill_title: "Latihan penipuan", home_drill_sub: "Berlatih dalam 60 saat",
       home_else: "Sesuatu yang lain berlaku", nav_drill: "Latihan penipuan",
-      tab_report: "Lapor", tab_news: "Berita", tab_play: "Main & menang"
+      tab_report: "Lapor", tab_news: "Berita", tab_play: "Main & menang",
+      listen: "Dengar pelan awak"
     },
     content: {
       questions: [

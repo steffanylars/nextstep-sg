@@ -244,9 +244,25 @@
   function headBlock(route) {
     return '<div class="res-head"><span class="what">' + escapeHtml(route.harm.label) + "</span>" +
       "<h2>" + escapeHtml(route.headline) + "</h2></div>" +
-      '<div class="reassure-line">' + withVerify(route.banner.text) +
-      "</div>";
+      '<div class="reassure-line">' + withVerify(route.banner.text) + "</div>" +
+      (route.answers.harm === "scam"
+        ? '<button class="listen-btn" onclick="NextStep.listenScam()">🔊 ' + ui("listen") + "</button>"
+        : "");
   }
+
+  // Play pre-generated MP3s in sequence (static files in /audio; silent if missing).
+  function playSeq(names) {
+    var i = 0;
+    function next() {
+      if (i >= names.length) return;
+      var a = new Audio("audio/" + names[i] + ".mp3");
+      i++;
+      a.onended = next; a.onerror = next;
+      a.play().catch(function () { next(); });
+    }
+    next();
+  }
+  function listenScam() { playSeq(["step-bank", "step-police", "step-scamshield", "step-warn"]); }
 
   function renderResults(route) {
     resState = { route: route, phase: "add", i: 0 };
@@ -364,7 +380,7 @@
   // Public API
   window.NextStep = {
     start: start, startWith: startWith, back: back, restart: restart, tellAdult: tellAdult,
-    setLang: setLang,
+    setLang: setLang, listenScam: listenScam,
     _addNext: addNext, _addBack: addBack, _seeAll: seeAll, // one-step results
     computeRoute: computeRoute // exposed for rules.html / tests
   };
