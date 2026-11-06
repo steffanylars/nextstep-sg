@@ -167,6 +167,11 @@
   .tabs .tab.active{background:var(--amber);color:#fff;}
   .listen-btn{display:inline-flex;align-items:center;gap:8px;background:var(--sand-card);border:1px solid var(--line);color:var(--teal-ink);font-weight:700;font-size:14px;border-radius:999px;padding:9px 15px;cursor:pointer;margin:2px 0 10px;}
   .listen-btn:active{transform:scale(.98);}
+  .ic{width:1.05em;height:1.05em;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+  .hc-ic .ic{width:26px;height:26px;vertical-align:0;}
+  .silence-btn{position:fixed;left:12px;bottom:12px;z-index:60;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);cursor:pointer;display:none;align-items:center;justify-content:center;color:var(--teal-ink);}
+  .silence-btn.show{display:flex;}
+  .silence-btn .ic{width:20px;height:20px;}
 </style>
 </head>
 <body>
@@ -175,6 +180,9 @@
   <button data-lang="zh">中文</button>
   <button data-lang="ms">Melayu</button>
 </div>
+<button class="silence-btn" id="silenceBtn" title="Silence" aria-label="Silence">
+  <svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+</button>
 <div class="wrap">
 
   <!-- HOME -->
@@ -190,11 +198,11 @@
       <p class="lede" id="t-lede">Quick, calm guidance for the first few minutes. We don't judge and we don't decide for you, we help you protect yourself, report it the right way, and tell someone who can help.</p>
       <div class="reassure" id="t-reassure"><b>You're not in trouble. Don't delete anything yet.</b> Four quick taps and you'll have a clear plan.</div>
       <button class="home-card scam" onclick="NextStep.startWith('scam')">
-        <span class="hc-ic">🛟</span>
+        <span class="hc-ic"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.9" y1="4.9" x2="9.2" y2="9.2"/><line x1="14.8" y1="14.8" x2="19.1" y2="19.1"/><line x1="14.8" y1="9.2" x2="19.1" y2="4.9"/><line x1="4.9" y1="19.1" x2="9.2" y2="14.8"/></svg></span>
         <span class="hc-txt"><b data-i18n="home_scam_title">I'm being scammed</b><span data-i18n="home_scam_sub">The first-10-minutes plan: bank, police, ScamShield</span></span>
       </button>
       <a class="home-card drill" href="test.html">
-        <span class="hc-ic">🎯</span>
+        <span class="hc-ic"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <span class="hc-txt"><b data-i18n="home_drill_title">Scam Drill</b><span data-i18n="home_drill_sub">Practice in 60 seconds</span></span>
       </a>
       <button class="home-card alt" onclick="NextStep.start()" data-i18n="home_else">Something else happened</button>
@@ -260,15 +268,44 @@
     var cfg = window.NEXTSTEP_CONFIG || {};
     var id = (cfg.ELEVENLABS_AGENT_ID || "").trim();
     var slot = document.getElementById("voice-slot");
+    var btn = document.getElementById("silenceBtn");
+    var MUTE = '<svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+    var VOL = '<svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+    function loadEmbed() {
+      if (document.getElementById("convai-embed")) return;
+      var s = document.createElement("script");
+      s.id = "convai-embed";
+      s.src = "https://unpkg.com/@elevenlabs/convai-widget-embed";
+      s.async = true; s.type = "text/javascript";
+      document.body.appendChild(s);
+    }
+    function mountVoice() {
+      if (!id) return;
+      if (!document.querySelector("elevenlabs-convai")) {
+        var w = document.createElement("elevenlabs-convai");
+        w.setAttribute("agent-id", id);
+        slot.appendChild(w);
+      }
+      loadEmbed();
+    }
+    function silenceAll() {
+      var w = document.querySelector("elevenlabs-convai"); if (w) w.remove();
+      var media = document.querySelectorAll("audio,video");
+      for (var i = 0; i < media.length; i++) { try { media[i].pause(); } catch (e) {} }
+      if (window.NextStep && NextStep.stopAudio) NextStep.stopAudio();
+    }
     if (!id) { document.getElementById("voice-hint").style.display = "block"; return; }
     document.getElementById("voice-label").style.display = "block";
-    var w = document.createElement("elevenlabs-convai");
-    w.setAttribute("agent-id", id);
-    slot.appendChild(w);
-    var s = document.createElement("script");
-    s.src = "https://unpkg.com/@elevenlabs/convai-widget-embed";
-    s.async = true; s.type = "text/javascript";
-    document.body.appendChild(s);
+    mountVoice();
+    if (btn) {
+      btn.classList.add("show");
+      var silenced = false;
+      btn.onclick = function () {
+        silenced = !silenced;
+        if (silenced) { silenceAll(); btn.innerHTML = VOL; btn.title = "Turn voice on"; }
+        else { mountVoice(); btn.innerHTML = MUTE; btn.title = "Silence"; }
+      };
+    }
   })();
 </script>
 <script src="app.js"></script>

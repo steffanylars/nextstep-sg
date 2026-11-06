@@ -66,6 +66,8 @@
   .rifa-card p{font-size:14.5px;line-height:1.5;color:rgba(31,36,51,.8);margin:0 0 18px;}
   .listen{display:inline-flex;align-items:center;gap:7px;background:var(--sand-card);border:1px solid var(--line);color:var(--teal-ink);font-weight:700;font-size:13.5px;border-radius:999px;padding:8px 14px;cursor:pointer;margin:0 0 14px;}
   .listen:active{transform:scale(.98);}
+  .ic{width:1.05em;height:1.05em;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+  .rifa-card .em .ic{width:46px;height:46px;vertical-align:0;stroke:var(--amber);}
 </style>
 </head>
 <body>
@@ -94,7 +96,7 @@
       <div class="who" id="chatWho"></div>
       <div class="bubble" id="chatMsg"></div>
     </div>
-    <button class="listen" onclick="new Audio('audio/drill-intro.mp3').play().catch(function(){})">🔊 Listen</button>
+    <button class="listen" onclick="new Audio('audio/drill-intro.mp3').play().catch(function(){})"><svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg> Listen</button>
     <p class="prompt">You already paid or shared your details. What do you do, and in what order?</p>
     <p class="hint">Tap the actions in the best order. Tap one in your list to remove it.</p>
     <div class="order"><div class="oh">Your order</div><div id="orderBox"></div></div>
@@ -104,12 +106,12 @@
 
   <!-- STAGE 3: result -->
   <section id="s-res" class="stage">
-    <div class="rifa-note">🎟️ Nice! You're entered in this week's raffle.</div>
+    <div class="rifa-note"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17"/></svg> Nice! You're entered in this week's raffle.</div>
     <div class="verdict">
       <div class="big" id="vBig">—</div>
       <div class="sub" id="vSub"></div>
       <div class="chips" id="vChips"></div>
-      <button class="listen" style="margin-top:12px" onclick="new Audio('audio/drill-ready.mp3').play().catch(function(){})">🔊 Hear “You're Scam-Ready”</button>
+      <button class="listen" style="margin-top:12px" onclick="new Audio('audio/drill-ready.mp3').play().catch(function(){})"><svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg> Hear “You're Scam-Ready”</button>
     </div>
     <div class="rightorder">
       <div class="rh">The right order</div>
@@ -127,7 +129,7 @@
 
 <div class="rifa-pop" id="rifaPop">
   <div class="rifa-card">
-    <div class="em">🎟️</div>
+    <div class="em"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17"/></svg></div>
     <h3>Play &amp; win</h3>
     <p>Finish the Scam Drill and you're in this week's raffle. Learn the moves, stand a chance to win.</p>
     <button class="btn" onclick="document.getElementById('rifaPop').style.display='none'">Let's go</button>

@@ -217,10 +217,10 @@
 
   // Gentle affirmations shown under each "right now" action (deterministic by index).
   var AFFS = {
-    en: ["Breathe. You're already doing the right thing. 💛", "One thing at a time. You've got this.",
+    en: ["Breathe. You're already doing the right thing.", "One thing at a time. You've got this.",
       "This isn't your fault. Keep going.", "You're being brave right now. Nearly there.", "Take your time. There's no rush."],
-    zh: ["深呼吸。你已经在做对的事了。💛", "一次做一件事。你可以的。", "这不是你的错。继续。", "你现在很勇敢，快好了。", "慢慢来，不用急。"],
-    ms: ["Tarik nafas. Awak dah buat perkara betul. 💛", "Satu demi satu. Awak boleh.", "Ini bukan salah awak. Teruskan.", "Awak sangat berani sekarang. Hampir siap.", "Ambil masa awak. Tak perlu tergesa."]
+    zh: ["深呼吸。你已经在做对的事了。", "一次做一件事。你可以的。", "这不是你的错。继续。", "你现在很勇敢，快好了。", "慢慢来，不用急。"],
+    ms: ["Tarik nafas. Awak dah buat perkara betul.", "Satu demi satu. Awak boleh.", "Ini bukan salah awak. Teruskan.", "Awak sangat berani sekarang. Hampir siap.", "Ambil masa awak. Tak perlu tergesa."]
   };
   function affirms() { return AFFS[LANG] || AFFS.en; }
 
@@ -238,7 +238,7 @@
   }
 
   function supportBar() {
-    return '<div class="support-bar"><span>💛</span><span>' + ui("support_bar") + "</span></div>";
+    return '<div class="support-bar"><svg class="ic" viewBox="0 0 24 24" style="flex:none;margin-top:1px"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21l8.8-8.3a5 5 0 0 0 0-7.1z"/></svg><span>' + ui("support_bar") + "</span></div>";
   }
 
   function headBlock(route) {
@@ -246,16 +246,23 @@
       "<h2>" + escapeHtml(route.headline) + "</h2></div>" +
       '<div class="reassure-line">' + withVerify(route.banner.text) + "</div>" +
       (route.answers.harm === "scam"
-        ? '<button class="listen-btn" onclick="NextStep.listenScam()">🔊 ' + ui("listen") + "</button>"
+        ? '<button class="listen-btn" onclick="NextStep.listenScam()"><svg class="ic" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg> ' + ui("listen") + "</button>"
         : "");
   }
 
   // Play pre-generated MP3s in sequence (static files in /audio; silent if missing).
+  var clipAudios = [];
+  function stopAudio() {
+    clipAudios.forEach(function (a) { try { a.pause(); a.currentTime = 0; } catch (e) {} });
+    clipAudios = [];
+  }
   function playSeq(names) {
+    stopAudio();
     var i = 0;
     function next() {
       if (i >= names.length) return;
       var a = new Audio("audio/" + names[i] + ".mp3");
+      clipAudios.push(a);
       i++;
       a.onended = next; a.onerror = next;
       a.play().catch(function () { next(); });
@@ -380,7 +387,7 @@
   // Public API
   window.NextStep = {
     start: start, startWith: startWith, back: back, restart: restart, tellAdult: tellAdult,
-    setLang: setLang, listenScam: listenScam,
+    setLang: setLang, listenScam: listenScam, stopAudio: stopAudio,
     _addNext: addNext, _addBack: addBack, _seeAll: seeAll, // one-step results
     computeRoute: computeRoute // exposed for rules.html / tests
   };
