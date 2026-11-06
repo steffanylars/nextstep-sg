@@ -1,1 +1,201 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NextStep — coming next</title><style>body{font-family:system-ui,sans-serif;background:linear-gradient(180deg,#FBFAF7,#ECE5D8);color:#0B3D37;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center;padding:24px}a{color:#1B7A7E}</style></head><body><div><h1>Coming next</h1><p>This page (test) is built in the next deliverable.</p><p><a href="index.html">← Back to NextStep</a></p></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>NextStep SG — live test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{--sand-0:#FBFAF7;--sand-2:#ECE5D8;--sand-card:#F4F1EA;--ink:#14342F;--teal-ink:#0B3D37;--teal:#1B7A7E;--amber:#E8A04C;--terra:#D9735A;--line:rgba(20,52,47,.18);--shadow:0 16px 40px rgba(8,42,38,.08);}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sand-0),var(--sand-2));background-attachment:fixed;min-height:100vh;}
+  .wrap{max-width:540px;margin:0 auto;padding:24px 18px 48px;}
+  .brand{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--teal-ink);display:flex;align-items:center;gap:9px;text-decoration:none;}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--amber);}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:var(--teal-ink);margin:16px 0 4px;letter-spacing:-.5px;}
+  .lede{font-size:15px;line-height:1.5;color:rgba(20,52,47,.8);margin:0 0 20px;}
+  .stage{display:none;animation:fade .3s ease;}
+  .stage.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px;}
+  .q{font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1.25;color:var(--teal-ink);margin:0 0 16px;}
+  .opt{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:15px;font-family:'Plus Jakarta Sans';font-weight:600;font-size:15.5px;line-height:1.35;color:var(--teal-ink);margin-bottom:11px;transition:transform .12s,border-color .15s,background .15s;}
+  .opt:active{transform:scale(.99);}
+  .opt:hover{border-color:var(--teal);}
+  .opt.sel{border-color:var(--amber);background:#FFF9F0;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;cursor:pointer;font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;padding:16px;border-radius:13px;background:var(--amber);color:var(--teal-ink);box-shadow:0 12px 30px rgba(232,160,76,.34);}
+  .btn:disabled{background:rgba(20,52,47,.12);color:rgba(20,52,47,.4);box-shadow:none;cursor:not-allowed;}
+  .btn.ghost{background:var(--sand-card);color:var(--teal-ink);border:1px solid var(--line);box-shadow:none;}
+  /* mini flow */
+  .stepper{display:flex;gap:6px;margin-bottom:16px;}
+  .pip{width:24px;height:5px;border-radius:999px;background:rgba(20,52,47,.16);}
+  .pip.done{background:var(--teal);} .pip.cur{background:var(--amber);}
+  .route-peek{background:var(--sand-card);border:1px solid var(--line);border-radius:13px;padding:14px;font-size:14px;line-height:1.5;margin-top:4px;}
+  .route-peek b{color:#8A3D22;}
+  /* dashboard */
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 6px;}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 14px;text-align:center;box-shadow:var(--shadow);}
+  .kpi .big{font-family:'Fraunces',serif;font-weight:700;font-size:40px;line-height:1;color:var(--teal-ink);}
+  .kpi .big.up{color:var(--teal);}
+  .kpi .lab{font-size:12.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:rgba(20,52,47,.6);margin-top:8px;}
+  .delta{text-align:center;font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--teal);margin:4px 0 14px;}
+  .meta{text-align:center;font-size:13px;color:rgba(20,52,47,.6);margin-top:6px;}
+  .reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--terra);font-weight:700;font-size:13px;cursor:pointer;}
+  .back{display:inline-block;margin-top:24px;color:var(--teal);font-weight:700;text-decoration:none;font-size:14px;}
+  .pill{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--teal);border-radius:999px;padding:3px 10px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span> NextStep</a>
+  <h1>Live test</h1>
+  <p class="lede">Measure the change: ask one question, run the real flow, ask again. Everyone's answers are tallied below — screenshot-ready for the pitch.</p>
+
+  <!-- STAGE 1: BEFORE -->
+  <section id="stage-before" class="stage active">
+    <div class="card">
+      <span class="pill">Before</span>
+      <p class="q">If an intimate photo of you leaked tonight, what's your very first step?</p>
+      <div id="beforeOpts"></div>
+    </div>
+    <button class="btn" id="beforeNext" disabled onclick="Test.toFlow()">Continue</button>
+  </section>
+
+  <!-- STAGE 2: THE FLOW -->
+  <section id="stage-flow" class="stage">
+    <div class="card">
+      <span class="pill">Now try NextStep</span>
+      <div class="stepper" id="stepper"></div>
+      <p class="q" id="flowTitle"></p>
+      <div id="flowOpts"></div>
+      <div id="flowDone" style="display:none">
+        <div class="route-peek" id="routePeek"></div>
+        <button class="btn" style="margin-top:14px" onclick="Test.toAfter()">That's my plan → continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 3: AFTER -->
+  <section id="stage-after" class="stage">
+    <div class="card">
+      <span class="pill">After</span>
+      <p class="q">Same question: if an intimate photo of you leaked tonight, what's your very first step?</p>
+      <div id="afterOpts"></div>
+    </div>
+    <button class="btn" id="afterNext" disabled onclick="Test.toResults()">See the results</button>
+  </section>
+
+  <!-- STAGE 4: DASHBOARD -->
+  <section id="stage-dash" class="stage">
+    <span class="pill">Impact so far</span>
+    <div class="kpis">
+      <div class="kpi"><div class="big" id="kBefore">–</div><div class="lab">Knew the right 1st step (before)</div></div>
+      <div class="kpi"><div class="big up" id="kAfter">–</div><div class="lab">Knew it (after NextStep)</div></div>
+    </div>
+    <div class="delta" id="kDelta"></div>
+    <div class="kpi"><div class="big" id="kSecs">–</div><div class="lab">Median seconds to first plan</div></div>
+    <div class="meta" id="kN"></div>
+    <button class="reset" onclick="Test.reset()">Reset all test data</button>
+    <a class="back" href="index.html">← Back to NextStep</a>
+  </section>
+</div>
+
+<script>
+var Test = (function(){
+  "use strict";
+  // The learning goal: PRESERVE EVIDENCE FIRST (screenshot), never delete.
+  var BEFORE_Q = [
+    {v:"delete",    label:"Delete everything so no one can see it"},
+    {v:"screenshot",label:"Screenshot it as evidence before anything else", correct:true},
+    {v:"reply",     label:"Reply and tell them to stop"},
+    {v:"nothing",   label:"Do nothing and hope it goes away"}
+  ];
+  var RULES=null, flowStep=0, flowAns={}, flowStart=null, beforePick=null, afterPick=null;
+
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function store(){try{return JSON.parse(localStorage.getItem("nextstep_test")||'{"before":[],"after":[],"secs":[]}');}catch(e){return {before:[],after:[],secs:[]};}}
+  function save(s){localStorage.setItem("nextstep_test",JSON.stringify(s));}
+  function stage(id){["before","flow","after","dash"].forEach(function(k){document.getElementById("stage-"+k).classList.toggle("active",k===id);});window.scrollTo(0,0);}
+
+  function renderChoice(boxId,opts,onPick,selVal){
+    var box=document.getElementById(boxId);box.innerHTML="";
+    opts.forEach(function(o){
+      var b=document.createElement("button");
+      b.className="opt"+(selVal===o.v?" sel":"");
+      b.textContent=o.label;
+      b.onclick=function(){onPick(o);[].forEach.call(box.children,function(c){c.classList.remove("sel");});b.classList.add("sel");};
+      box.appendChild(b);
+    });
+  }
+
+  function initBefore(){
+    renderChoice("beforeOpts",BEFORE_Q,function(o){beforePick=o;document.getElementById("beforeNext").disabled=false;});
+  }
+
+  function toFlow(){
+    stage("flow");flowStep=0;flowAns={};flowStart=Date.now();
+    if(!RULES){fetch("routes.json").then(function(r){return r.json();}).then(function(d){RULES=d;renderFlow();});}
+    else renderFlow();
+  }
+  function renderFlow(){
+    var q=RULES.questions[flowStep],total=RULES.questions.length;
+    document.getElementById("flowDone").style.display="none";
+    document.getElementById("flowOpts").style.display="block";
+    document.getElementById("flowTitle").textContent=q.title;
+    var sp=document.getElementById("stepper");sp.innerHTML="";
+    for(var i=0;i<total;i++){var p=document.createElement("div");p.className="pip"+(i<flowStep?" done":i===flowStep?" cur":"");sp.appendChild(p);}
+    var box=document.getElementById("flowOpts");box.innerHTML="";
+    q.options.forEach(function(o){
+      var b=document.createElement("button");b.className="opt";b.textContent=o.label;
+      b.onclick=function(){flowAns[q.id]=o.value;if(flowStep<total-1){flowStep++;renderFlow();}else showPeek();};
+      box.appendChild(b);
+    });
+  }
+  function showPeek(){
+    var secs=Math.round((Date.now()-flowStart)/100)/10;
+    var s=store();s.secs.push(secs);save(s);
+    var harm=RULES.harms[flowAns.harm];
+    document.getElementById("stepper").innerHTML="";
+    document.getElementById("flowTitle").textContent="Here's your plan — first step:";
+    document.getElementById("flowOpts").style.display="none";
+    document.getElementById("routePeek").innerHTML="<b>Add — protect now:</b><br>"+esc(harm.add[0])+"<br><br>…plus Check (report) and Tell (get a human). "+secs+"s to here.";
+    document.getElementById("flowDone").style.display="block";
+  }
+
+  function toAfter(){
+    stage("after");
+    renderChoice("afterOpts",BEFORE_Q,function(o){afterPick=o;document.getElementById("afterNext").disabled=false;});
+  }
+
+  function toResults(){
+    var s=store();
+    s.before.push(beforePick&&beforePick.correct?1:0);
+    s.after.push(afterPick&&afterPick.correct?1:0);
+    save(s);
+    renderDash();stage("dash");
+  }
+
+  function pct(arr){if(!arr.length)return 0;return Math.round(100*arr.reduce(function(a,b){return a+b;},0)/arr.length);}
+  function median(arr){if(!arr.length)return null;var a=arr.slice().sort(function(x,y){return x-y;});var m=Math.floor(a.length/2);return a.length%2?a[m]:Math.round((a[m-1]+a[m])*5)/10;}
+
+  function renderDash(){
+    var s=store();
+    var b=pct(s.before),af=pct(s.after);
+    document.getElementById("kBefore").textContent=b+"%";
+    document.getElementById("kAfter").textContent=af+"%";
+    var d=af-b;
+    document.getElementById("kDelta").textContent=(d>=0?"▲ +":"▼ ")+d+" points after using NextStep";
+    var med=median(s.secs);
+    document.getElementById("kSecs").textContent=med===null?"–":med+"s";
+    document.getElementById("kN").textContent=s.before.length+" people tested · "+s.secs.length+" runs timed";
+  }
+
+  function reset(){localStorage.removeItem("nextstep_test");localStorage.removeItem("nextstep_timings");beforePick=afterPick=null;flowStep=0;flowAns={};stage("before");document.getElementById("beforeNext").disabled=true;document.getElementById("afterNext").disabled=true;initBefore();}
+
+  initBefore();
+  return {toFlow:toFlow,toAfter:toAfter,toResults:toResults,reset:reset};
+})();
+</script>
+</body>
+</html>
