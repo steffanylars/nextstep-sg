@@ -177,7 +177,7 @@
     return '<div class="res-head"><span class="what">' + escapeHtml(route.harm.label) + "</span>" +
       "<h2>" + escapeHtml(route.headline) + "</h2></div>" +
       '<div class="reassure-line">' + withVerify(route.banner.text) +
-      " <b>This isn't your fault, and you're not alone.</b></div>";
+      "</div>";
   }
 
   function renderResults(route) {
@@ -249,7 +249,7 @@
     var checkCard =
       '<div class="card check"><div class="label"><span class="tag">Check</span> Report it — when you\'re ready</div>' +
       '<div class="sub">No rush. You can do this later today. Confirm each link before relying on it.</div>' +
-      "<details" + '><summary style="cursor:pointer;font-weight:700;color:#1B7A7E;padding:6px 0;">Show the report steps</summary>' +
+      "<details" + '><summary style="cursor:pointer;font-weight:700;color:#1D3A8F;padding:6px 0;">Show the report steps</summary>' +
       stepsOL(route.check) + "</details></div>";
 
     var why =
@@ -264,7 +264,7 @@
 
     document.getElementById("results").innerHTML =
       headBlock(route) +
-      '<div class="reassure-line" style="background:#FFF9F0;border-color:rgba(232,160,76,.4)"><b>That was the hard part — well done.</b> The urgent steps are behind you. Now, the most important thing is to get a real person beside you.</div>' +
+      '<div class="reassure-line" style="background:#EDF2FC;border-color:rgba(67,114,214,.4)"><b>That was the hard part — well done.</b> Now the key step: get a real person beside you.</div>' +
       recap + tellCard + checkCard + supportBar() + why;
   }
 
